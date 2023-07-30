@@ -1,3 +1,5 @@
 require('basic')
 require('keymaps')
-require("lazy").setup(plugins, opts)
+require('lazynvim')
+require('plugins')
+require('theme')
