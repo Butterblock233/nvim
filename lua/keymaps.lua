@@ -46,4 +46,4 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 -- 插件设置 -- 
 vim.keymap.set('n','<C-b>',':Neotree<CR>',opts)
-vim.keymap.set('n','<C-b>',':Neotree<CR>',opts)
+vim.keymap.set('i','<C-b>',':Neotree<CR>',opts)
