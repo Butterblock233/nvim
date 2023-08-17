@@ -2,7 +2,7 @@ local opts = {
     noremap = true,      -- non-recursive
     silent = true,       -- do not show message
 }
-
+local map=vim.keymap.set
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
 map('n', '<M-h>', '<C-w>h', opts)
