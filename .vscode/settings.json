@@ -4,6 +4,8 @@
         "plugins",
         "opts",
         "lazy",
-        "colorscheme"
+        "colorscheme",
+        "map",
+        "cmp"
     ]
 }
