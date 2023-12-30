@@ -8,6 +8,8 @@ lspconfig.rust_analyzer.setup {
     ['rust-analyzer'] = {},
   },
 }
+lspconfig.clangd.setup{}
+lspconfig.lua_ls.setup{}
 
 
 -- Global mappings.

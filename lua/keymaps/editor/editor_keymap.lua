@@ -5,10 +5,10 @@ local opts = {
 map=vim.keymap.set
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
-map('n', '<M-h>', '<C-w>h', opts)
-map('n', '<M-j>', '<C-w>j', opts)
-map('n', '<M-k>', '<C-w>k', opts)
-map('n', '<M-l>', '<C-w>l', opts)
+map('n', '<M-h>', '<C-w>h',opts)
+map('n', '<M-j>', '<C-w>j',opts)
+map('n', '<M-k>', '<C-w>k',opts)
+map('n', '<M-l>', '<C-w>l',opts)
 
 
 
@@ -28,7 +28,7 @@ map('i','<C-w>','<cmd>q<CR>')
 map('n','<C-w>','<cmd>q<CR>')
 
 -- Hint: start visual mode with the same area as the previous area and the same mode
-map('v', '<', '<gv', opts)
-map('v', '>', '>gv', opts)
+map('v', '<', '<gv',opts)
+map('v', '>', '>gv',opts)
 
 map('n','f2','<cmd>source ~/AppData/Local/nvim/init.lua<CR>')
