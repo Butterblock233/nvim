@@ -1,6 +1,18 @@
 require('lazy').setup({
   "navarasu/onedark.nvim",
+  --LSP--
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-   })
+  'neovim/nvim-lspconfig',
+  --cmp--
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'hrsh7th/nvim-cmp',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  "nvimdev/lspsaga.nvim",
+  'onsails/lspkind-nvim',
+})

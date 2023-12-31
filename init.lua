@@ -7,4 +7,6 @@ require('plugin.plugin-list')
 --require('plugin.mason')
 require('plugin.mason-lspconfig')
 require('plugin.lsp-config')
+require('plugin.cmp')
 require('core.theme')
+
