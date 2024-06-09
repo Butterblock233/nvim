@@ -1,7 +1,7 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 local types = require('cmp.types')
-local compare = require('cmp.config.compare')
+-- local compare = require('cmp.config.compare')
 
 cmp.setup {
 
