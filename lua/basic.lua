@@ -28,3 +28,7 @@ vim.opt.smartcase = true  -- but make it case sensitive if an uppercase is enter
 -- leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- 关闭Swap文件
+--vim.opt.noswapfile = true
+vim.opt.swapfile = false
