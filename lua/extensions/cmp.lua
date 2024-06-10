@@ -1,6 +1,15 @@
-local lspkind = require'lspkind'
-local cmp=require'cmp'
-cmp.setup{
+local cmp = require('cmp')
+local lspkind = require('lspkind')
+local types = require('cmp.types')
+-- local compare = require('cmp.config.compare')
+
+cmp.setup {
+
+  preselect = types.cmp.PreselectMode.Item,
+  --默认选择第一项
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
   snippet = {
     expand = function(args)
       -- 以下插件作为前提：
@@ -38,27 +47,25 @@ cmp.setup{
   -- 快捷键绑定
   mapping = {
     -- 上一个
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
     -- 下一个
-    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     -- 出现补全
-    ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping.complete(),
     -- 取消
-    ['<A-,>'] = cmp.mapping({
+    ['<C-g>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
     -- 确认
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ['<Tab>'] = cmp.mapping.confirm({
+    ['<tab>'] = cmp.mapping.confirm({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
     -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-  },
-  -- load vscode snippet (friendly-snippet)
---require("luasnip.loaders.from_vscode").lazy_load()
+  }
 }
