@@ -4,3 +4,6 @@ draft.txt
 .vscode/*
 .vscode/settings.json
 lazy-lock.json
+.gitignore
+lazy-lock.json
+test.lua

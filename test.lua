@@ -1,4 +1,3 @@
-local a = 1
-local b = 1
-local c = 1
+local a={5,1,3,5}
 print("Hello")
+
