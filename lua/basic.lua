@@ -32,3 +32,10 @@ vim.g.maplocalleader = " "
 -- 关闭Swap文件
 --vim.opt.noswapfile = true
 vim.opt.swapfile = false
+
+--autoreload
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
