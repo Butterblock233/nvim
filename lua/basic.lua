@@ -39,3 +39,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   command = "if mode() != 'c' | checktime | endif",
   pattern = { "*" },
 })
+vim.diagnostic.config({update_in_insert = true}) -- 插入模式下启用代码诊断
