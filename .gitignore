@@ -2,8 +2,6 @@ lazy-lock.json
 coc-settings.json
 draft.txt
 .vscode/*
-.vscode/settings.json
 lazy-lock.json
 .gitignore
-lazy-lock.json
 test.lua
