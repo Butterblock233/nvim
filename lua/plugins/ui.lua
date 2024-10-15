@@ -161,14 +161,14 @@ return {
 		-- 		require("menu").open(options, { mouse = true })
 		-- 	end, {})
 		-- end,
-		keys = {
-			{ "n", "<C-t>", function() require("menu").open("default") end },
-			{ "n", "<RightMouse>", function()
-				vim.cmd.exec '"normal! \\<RightMouse>"'
-
-				local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-				require("menu").open(options, { mouse = true })
-			end },
-		}
+		-- keys = {
+		-- 	{ "n", "<C-t>", function() require("menu").open("default") end },
+		-- 	{ "n", "<RightMouse>", function()
+		-- 		vim.cmd.exec '"normal! \\<RightMouse>"'
+		--
+		-- 		local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+		-- 		require("menu").open(options, { mouse = true })
+		-- 	end },
+		-- }
 	},
 }
