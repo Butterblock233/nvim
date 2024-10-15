@@ -2,6 +2,7 @@ return {
 	-- using lazy.nvim
 	{
 		'akinsho/bufferline.nvim',
+		-- name = "BuffefLine",
 		dependencies = 'nvim-tree/nvim-web-devicons',
 		event = "VeryLazy",
 		keys = {
@@ -10,8 +11,8 @@ return {
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
 			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
 			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
-			{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
-			{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+			{ "<C-S-Tab>",  "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+			{ "<C-Tab>",    "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
 			{ "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
 			{ "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
 		},
@@ -37,36 +38,36 @@ return {
 				sections = {
 					lualine_a = { 'mode' },
 					lualine_b = { 'branch', 'diff',
-					{
-					'diagnostics',
-					-- Table of diagnostic sources, available sources are:
-					--   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-					-- or a function that returns a table as such:
-					--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-					sources = { 'nvim_diagnostic', 'coc' },
-			  
-					-- Displays diagnostics for the defined severity types
-					sections = { 'error', 'warn', 'info', 'hint' },
-			  
-					diagnostics_color = {
-					  -- Same values as the general color option can be used here.
-					  error = 'DiagnosticError', -- Changes diagnostics' error color.
-					  warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
-					  info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
-					  hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
-					},
-					--symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
-					colored = true,           -- Displays diagnostics status in color if set to true.
-					update_in_insert = true, -- Update diagnostics in insert mode.
-					always_visible = false,   -- Show diagnostics even if there are none.
-				}
-				  }
-				 },
-					lualine_c = { 'filename' },
-					lualine_x = { 'encoding', 'fileformat', 'filetype' },
-					lualine_y = { 'progress' },
-					lualine_z = { 'location' }
-				}
+						{
+							'diagnostics',
+							-- Table of diagnostic sources, available sources are:
+							--   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
+							-- or a function that returns a table as such:
+							--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+							sources = { 'nvim_diagnostic', 'coc' },
+
+							-- Displays diagnostics for the defined severity types
+							sections = { 'error', 'warn', 'info', 'hint' },
+
+							diagnostics_color = {
+								-- Same values as the general color option can be used here.
+								error = 'DiagnosticError', -- Changes diagnostics' error color.
+								warn  = 'DiagnosticWarn', -- Changes diagnostics' warn color.
+								info  = 'DiagnosticInfo', -- Changes diagnostics' info color.
+								hint  = 'DiagnosticHint', -- Changes diagnostics' hint color.
+							},
+							--symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+							colored = true, -- Displays diagnostics status in color if set to true.
+							update_in_insert = true, -- Update diagnostics in insert mode.
+							always_visible = false, -- Show diagnostics even if there are none.
+						}
+					}
+				},
+				lualine_c = { 'filename' },
+				lualine_x = { 'encoding', 'fileformat', 'filetype' },
+				lualine_y = { 'progress' },
+				lualine_z = { 'location' }
+			}
 		end
 		--[[ lualine_a = { "mode" },
     lualine_b = { "branch" }, ]]
@@ -120,5 +121,54 @@ return {
 			},
 		}
 
-	}
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
+	},
+	{
+		'goolord/alpha-nvim',
+		dependencies = {
+			'echasnovski/mini.icons',
+			'nvim-lua/plenary.nvim'
+		},
+		config = function()
+			require 'alpha'.setup(require 'alpha.themes.theta'.config)
+		end
+	},
+	{
+		"nvchad/menu",
+		dependencies = {
+			"nvchad/base46",
+			"nvchad/ui",
+			"nvchad/volt"
+		},
+		lazy = true,
+		-- config = function()
+		-- 	-- Keyboard users
+		-- 	vim.keymap.set("n", "<C-t>", function()
+		-- 		require("menu").open("default")
+		-- 	end, {})
+		--
+		-- 	-- mouse users + nvimtree users!
+		-- 	vim.keymap.set("n", "<RightMouse>", function()
+		-- 		vim.cmd.exec '"normal! \\<RightMouse>"'
+		--
+		-- 		local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+		-- 		require("menu").open(options, { mouse = true })
+		-- 	end, {})
+		-- end,
+		keys = {
+			{ "n", "<C-t>", function() require("menu").open("default") end },
+			{ "n", "<RightMouse>", function()
+				vim.cmd.exec '"normal! \\<RightMouse>"'
+
+				local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+				require("menu").open(options, { mouse = true })
+			end },
+		}
+	},
 }

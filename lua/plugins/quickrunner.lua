@@ -19,14 +19,14 @@ return {
                     "javac $fileName &&",
                     "java $fileNameWithoutExt"
                   },
-                  python = "python3 -u",
+                  python = "python $fileName",
                   typescript = "deno run",
                   rust = {
                     "cd $dir &&",
                     "rustc $fileName &&",
                     "$dir/$fileNameWithoutExt"
                   },
-                  c = function(...)
+                  c = function()
                     local c_base = {
                       "cd $dir &&",
                       "gcc $fileName -o",
