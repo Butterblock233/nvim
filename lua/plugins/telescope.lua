@@ -10,5 +10,5 @@ return {
 		vim.keymap.set('n', '<leader>ft', builtin.live_grep, { desc = 'Telescope find texts' })
 		vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 		vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-	end
+	end,
 }

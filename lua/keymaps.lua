@@ -1,4 +1,3 @@
-require("functions")
 local opts = {
 	noremap = true, -- non-recursive
 	silent = true, -- do not show message
@@ -38,7 +37,7 @@ vim.keymap.set('n','<C-w>','<cmd>q<CR>') ]]
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
-vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>', createOpts("重新加载配置"))
+vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>',{desc="重新加载配置"})
 
 vim.keymap.set('i', '<C-v>', '<C-r>+')
-vim.keymap.set('n', '<leader>f','')
+-- vim.keymap.set('n', '<leader>f','')

@@ -5,6 +5,7 @@ return {
 	--cmp--
 	{
 		'hrsh7th/cmp-nvim-lsp',
+		-- after = "neovim/nvim-lspconfig",
 		event = "InsertEnter",
 		dependencies = {
 			'hrsh7th/cmp-buffer',
@@ -14,6 +15,7 @@ return {
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
 			'onsails/lspkind.nvim',
+			-- "neovim/nvim-lspconfig",
 		},
 		config = function()
 			local cmp = require('cmp')
