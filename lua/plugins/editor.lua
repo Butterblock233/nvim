@@ -1,39 +1,75 @@
 return {
-	'nvim-neo-tree/neo-tree.nvim',
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-		"MunifTanjim/nui.nvim",
-		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-	},
-	--cmd = "Neotree",
-	keys = {
-		{
-			"<leader>e",
-			function()
-				require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-			end,
-			desc = "Explorer NeoTree (cwd)",
+	{
+		'nvim-neo-tree/neo-tree.nvim',
+		cond = true,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
-	},
-	opts = {
-		default_component_configs = {
-			git_status = {
-				symbols = {
-					-- Change type
-					added     = "✚",
-					deleted   = "D  ",
-					modified  = "M",
-					renamed   = "󰑕",
-					-- Status type
-					untracked = "U",
-					ignored   = "",
-					unstaged  = "",
-					staged    = "",
-					conflict  = "",
+		--cmd = "Neotree",
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+		},
+		opts = {
+			default_component_configs = {
+				git_status = {
+					symbols = {
+						-- Change type
+						added     = "✚",
+						deleted   = "D  ",
+						modified  = "M",
+						renamed   = "󰑕",
+						-- Status type
+						untracked = "U",
+						ignored   = "",
+						unstaged  = "",
+						staged    = "",
+						conflict  = "",
+					}
 				}
 			}
-		}
 
+		},
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
+		cond = false,
+		version = "*",
+		lazy = true,
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		keys = {
+			{
+				"<leader>e", "<cmd>NvimTreeToggle<CR>",{desc = 'Toggle Nvim-Tree'}
+			}
+		},
+		opts = {
+			sort = {
+				sorter = "case_sensitive",
+			},
+			view = {
+				width = 33,
+			},
+			renderer = {
+				group_empty = true,
+				icons = {
+					padding = "  ",
+				}
+			},
+			filters = {
+				dotfiles = true,
+			},
+		}
 	}
+
 }
