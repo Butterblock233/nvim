@@ -37,7 +37,19 @@ vim.keymap.set('n','<C-w>','<cmd>q<CR>') ]]
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
-vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>',{desc="重新加载配置"})
+vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>', { desc = "重新加载配置" })
 
 vim.keymap.set('i', '<C-v>', '<C-r>+')
 -- vim.keymap.set('n', '<leader>f','')
+--
+-- -- Terminal
+-- function _G.set_terminal_keymaps()
+-- 	local options = { buffer = 0 }
+-- 	vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], options)
+-- 	vim.keymap.set('t', 'jk', [[<C-\><C-n>]], options)
+-- 	vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], options)
+-- 	vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], options)
+-- 	vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], options)
+-- 	vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], options)
+-- 	vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], options)
+-- end

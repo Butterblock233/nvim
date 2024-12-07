@@ -10,7 +10,7 @@ return {
 		{ "<leader>crf", ":CRFiletype<CR>", { noremap = true, silent = false } },
 		{ "<leader>crp", ":CRProjects<CR>", { noremap = true, silent = false } },
 	},
-	config = {
+	opts = {
 		function()
 			require("code_runner").setup({
 				filetype = {
@@ -25,6 +25,9 @@ return {
 						"cd $dir &&",
 						"rustc $fileName &&",
 						"$dir/$fileNameWithoutExt",
+					},
+					haskell = {
+						"runghc $fileName"
 					},
 					c = function()
 						local c_base = {

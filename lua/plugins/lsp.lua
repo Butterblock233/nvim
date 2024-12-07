@@ -16,26 +16,77 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
-		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {desc="转到定义"})
-		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+		-- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "转到定义" })
+		-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+		-- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+		-- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+		-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 		-- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
 		-- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
 		-- vim.keymap.set('n', '<space>wl', function()
 		-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 		-- end, opts)
-		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-		vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+		-- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+		-- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+		-- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+		-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		-- vim.keymap.set('n', '<space>f', function()
 		-- 	vim.lsp.buf.format { async = true }
 		-- end, opts)
 	end,
 })
 local M = {
+	--LspSaga.nvim
+	{
+		'nvimdev/lspsaga.nvim',
+		opts = {
+			ui = {
+				-- code_action = '',
+			},
+			-- hover = {
+			-- 	max_width = 0.9,
+			-- 	max_height = 0.8,
+			-- 	open_link = 'gx',
+			-- 	open_cmd = '!chrome',
+			-- },
+			code_action = {
+				num_shortcut = true,
+				show_server_name = false,
+				extend_gitsigns = false,
+				only_in_cursor = true,
+				max_height = 0.3,
+				cursorline = true,
+				keys = {
+					quit = 'q',
+					exec = '<CR>',
+				},
+			},
+			lightbulb = {
+				enable = false,
+				sign = true,
+				debounce = 10,
+				sign_priority = 40,
+				virtual_text = true,
+				enable_in_insert = false,
+				ignore = {
+					clients = {},
+					ft = {},
+				},
+			},
+		},
+		config = true,
+		event = "VeryLazy",
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter', -- optional
+			'nvim-tree/nvim-web-devicons', -- optional
+		},
+		keys = {
+			{ 'ga',   '<cmd>Lspsaga code_action<CR>', mode = 'n', desc = "Code Action" },
+			{ 'gr',   '<cmd>Lspsaga rename<CR>',      mode = 'n', desc = "Rename" },
+			{ '<f2>', '<cmd>Lspsaga rename<CR>',      mode = 'n', desc = "Rename" },
+		}
+	},
+	--LSP三件套
 	{
 		"williamboman/mason.nvim",
 		config = true,
@@ -50,19 +101,30 @@ local M = {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event ="VeryLazy",
+		event = "VeryLazy",
 		-- event=function ()
 		-- 	vim.api.nvim_create_autocmd("BufEnter",{
 		-- 		pattern="!alpha"
 		-- 	})
 		-- end,
+		keys = {
+			{ mode = 'n', 'gD', vim.lsp.buf.declaration, desc = "Go to declaration" },
+			{ mode = 'n', 'gd', vim.lsp.buf.definition, desc = "Go to definition"},
+			{ mode = 'n', 'K', vim.lsp.buf.hover,desc = "Show infomation" },
+			{ mode = 'n', 'gi', vim.lsp.buf.implementation, },
+			{ mode = 'n', '<C-k>', vim.lsp.buf.signature_help, },
+			{ mode = 'n', '<space>D', vim.lsp.buf.type_definition, },
+			{ mode = 'n', '<space>rn', vim.lsp.buf.rename, },
+			-- { mode = 'nv', '<space>ca', vim.lsp.buf.code_action, desc = "重命名" },
+			{ mode = 'n', 'gR', vim.lsp.buf.references, }
+		},
 		config = function()
 			-- 设置 mason
 			local lspconfig = require("lspconfig")
 			-- 自动配置已安装的 LSP 服务器
 			-- lspconfig.detekt.setup{}
 			-- lspconfig.gdtoolkit.setup{}
-
+			lspconfig.v_analyzer.setup({})
 			require("mason-lspconfig").setup_handlers({
 				-- 默认处理器（可选）
 				function(server_name) -- 自动安装的 LSP 服务器会这样设置；server_name represents mason-lspconfig.nvim known server name

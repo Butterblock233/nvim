@@ -5,3 +5,8 @@ draft.txt
 lazy-lock.json
 .gitignore
 test.lua
+lsp.lua.bak
+ginit.vim
+lua/custom.lua
+draft.lua
+tmp/
