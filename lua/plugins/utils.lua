@@ -60,7 +60,8 @@ return {
 		lazy = true,
 		dependencies = {
 			"theHamsta/nvim_rocks",
-			build = "pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
+			build =
+			"pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
 			config = function()
 				require("nvim_rocks").ensure_installed("luautf8")
 			end,
@@ -123,4 +124,17 @@ return {
 			},
 		},
 	},
+	-- LazyDev.nvim
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	-- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 }
