@@ -4,19 +4,41 @@ return {
 		"akinsho/bufferline.nvim",
 		-- name = "BuffefLine",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-			{ "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-			{ "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-			{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-			{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+		-- event = "VeryLazy",
+		init = function()
+			require("bufferline").setup({})
+		end,
+		config = {
+			options = {
+				hover = {
+					enabled = true,
+					delay = 150,
+					reveal = { "close" },
+				},
+				highlights = {
+					fill = {
+						bg = {
+							attribute = "fg",
+							highlight = "Pmenu",
+						},
+					},
+				},
+				-- sepatarot_style=""
+			},
 		},
-		config = {},
+		keys = {
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",              desc = "Toggle pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>",   desc = "Delete non-pinned buffers" },
+			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",            desc = "Delete other buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",             desc = "Delete buffers to the right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",              desc = "Delete buffers to the left" },
+			{ "<leader>bc", "<Cmd>bw<CR>",                               desc = "Delete current buffer" },
+			{ "<leader>ba", "<Cmd>BufferLineCloseOthers<CR><cmd>bw<CR>", desc = "Delete all buffers" },
+			{ "<C-S-Tab>",  "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
+			{ "<C-Tab>",    "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
+			{ "[b",         "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
+			{ "]b",         "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
+		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -32,46 +54,12 @@ return {
 			end
 		end,
 		config = function()
-			require("lualine").setup({
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = {
-						"branch",
-						"diff",
-						{
-							"diagnostics",
-							-- Table of diagnostic sources, available sources are:
-							--   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-							-- or a function that returns a table as such:
-							--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-							sources = { "nvim_diagnostic", "coc" },
-
-							-- Displays diagnostics for the defined severity types
-							sections = { "error", "warn", "info", "hint" },
-
-							diagnostics_color = {
-								-- Same values as the general color option can be used here.
-								error = "DiagnosticError", -- Changes diagnostics' error color.
-								warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
-								info = "DiagnosticInfo", -- Changes diagnostics' info color.
-								hint = "DiagnosticHint", -- Changes diagnostics' hint color.
-							},
-							--symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
-							colored = true, -- Displays diagnostics status in color if set to true.
-							update_in_insert = true, -- Update diagnostics in insert mode.
-							always_visible = false, -- Show diagnostics even if there are none.
-						},
-					},
-				},
-				lualine_c = { "filename" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
-			})
+			require("lualine").setup({})
 		end,
-		--[[ lualine_a = { "mode" },
-    lualine_b = { "branch" }, ]]
+		opts = require("config.colorshemes.lualine").opts,
 	},
+	--[[ lualine_a = { "mode" },
+    lualine_b = { "branch" }, ]]
 	{
 		"equalsraf/neovim-gui-shim",
 	},

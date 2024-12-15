@@ -42,7 +42,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 vim.diagnostic.config({ update_in_insert = true }) -- 插入模式下启用代码诊断
 --鼠标事件
 vim.opt.mouse = "a"
--- vim.opt.shell='pwsh -nologo'
---
+
+
 -- session options
 vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+
+-- vim.cmd([[cnoremap wqa wa | qa]])

@@ -10,3 +10,4 @@ ginit.vim
 lua/custom.lua
 draft.lua
 tmp/
+ginit.vim
