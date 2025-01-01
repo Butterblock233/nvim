@@ -40,6 +40,9 @@ vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>', { desc = "重新加载配置" })
 
 vim.keymap.set('i', '<C-v>', '<C-r>+')
+
+vim.keymap.set('n','<leader>st','<cmd>Lazy profile<CR>')
+
 -- vim.keymap.set('n', '<leader>f','')
 --
 -- -- Terminal

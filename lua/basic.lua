@@ -4,11 +4,20 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.mouse = "a" -- allow the mouse to be used in Nvim
 vim.g.mapleader = " "
 
--- Tab
+-- Tab options
 vim.opt.tabstop = 4 -- number of visual spaces per TAB
 vim.opt.softtabstop = 4 -- number of spacesin tab when editing
 vim.opt.shiftwidth = 4 -- insert 4 spaces on a tab
--- vim.opt.expandtab = true -- tabs are spaces, mainly because of python
+vim.opt.expandtab = false -- tabs are spaces, mainly because of python
+-- Tab options for python
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = false
+  end,
+})
 
 -- UI config
 vim.opt.number = true -- show absolute number

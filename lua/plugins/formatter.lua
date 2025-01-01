@@ -19,16 +19,8 @@ local configs = {
 return {
 	{
 		"stevearc/conform.nvim",
+		cond = false,
 		event = "VeryLazy",
 		opts = { configs },
-		keys = {
-			{
-				"<leader>fc",
-				function()
-					require("conform").format()
-				end,
-				desc = "Format Code",
-			},
-		}
 	}
 }

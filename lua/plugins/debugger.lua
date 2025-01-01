@@ -13,8 +13,8 @@ return {
 			},
 		},
 		-- stylua: ignore
-		keys = require("config.dap").keys,
-		config = function ()
+		keys = require("config.dap.keys"),
+		config = function()
 			require("config.dap").setup()
 		end
 	},
@@ -71,4 +71,8 @@ return {
 		-- mason-nvim-dap is loaded when nvim-dap loads
 		config = function() end,
 	},
+	{
+		"mfussenegger/nvim-dap-python",
+		lazy = true
+	}
 }

@@ -136,5 +136,28 @@ return {
 			},
 		},
 	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		event = "VeryLazy",
+		cond = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			animate = {enabled = false},
+			bigfile = { enabled = true },
+			dashboard = { enabled = true, },
+			indent = { enabled = false },
+			input = { enabled = true },
+			notifier = { enabled = false },
+			quickfile = { enabled = true },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = false },
+			words = { enabled = true },
+		},
+	}
 	-- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 }

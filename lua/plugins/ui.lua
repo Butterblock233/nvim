@@ -42,7 +42,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
 		init = function()
 			vim.g.lualine_laststatus = vim.o.laststatus
 			if vim.fn.argc(-1) > 0 then
@@ -160,4 +160,9 @@ return {
 		-- 	end },
 		-- }
 	},
+	{
+		"nvim-notify",
+		lazy = true,
+		-- event = "VeryLazy"
+	}
 }

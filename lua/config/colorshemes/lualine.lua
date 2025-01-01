@@ -35,7 +35,6 @@ M.opts = {
 	lualine_c = { "filename" },
 	lualine_x = { "encoding", "fileformat", "filetype" },
 	lualine_y = { "progress",
-
 		{
 			function()
 				if not vim.g.loaded_xmake then return "" end

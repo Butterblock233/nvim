@@ -19,6 +19,10 @@ return {
 			},
 		},
 		opts = {
+			filesystem = {
+				hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
+
+			},
 			default_component_configs = {
 				git_status = {
 					symbols = {
@@ -50,7 +54,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>e", "<cmd>NvimTreeToggle<CR>",{desc = 'Toggle Nvim-Tree'}
+				"<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = 'Toggle Nvim-Tree' }
 			}
 		},
 		opts = {
@@ -69,6 +73,16 @@ return {
 			filters = {
 				dotfiles = true,
 			},
+		}
+	},
+	{
+		"OXY2DEV/markview.nvim",
+		lazy = true, -- Not Recommended
+		ft = "markdown", -- If you decide to lazy-load anyway
+		-- event = "VeryLazy",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons"
 		}
 	}
 

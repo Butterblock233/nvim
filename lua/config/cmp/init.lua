@@ -5,7 +5,6 @@ function M.setup()
 	local lspkind = require('lspkind')
 	local types = require('cmp.types')
 	local compare = require('cmp.config.compare')
-	-- local compare = require('cmp.config.compare')
 
 	cmp.setup {
 
@@ -33,7 +32,8 @@ function M.setup()
 			},
 			{
 				{ name = 'buffer' },
-				{ name = 'path' }
+				{ name = 'path' },
+				{name = 'codeium'}
 			}
 		),
 		-- 使用lspkind-nvim显示类型图标

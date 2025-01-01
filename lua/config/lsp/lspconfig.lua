@@ -14,6 +14,11 @@ function M.setup()
 	lspconfig.clangd.setup {
 		inlay_hint = true,
 	}
+	-- lspconfig.powershell_es.setup {
+	-- 	cmd = {'pwsh', '-NoLogo', '-NoProfile', '-Command', "~/AppData/Local/nvim-data/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1"},
+	-- 	filetypes = { 'ps1', 'psm1', 'psd1' },
+	-- 	root_dir = lspconfig.util.find_git_ancestor,
+	-- }
 	lspconfig.lua_ls.setup {
 		inlay_hint = true,
 		on_init = function(client)
@@ -48,14 +53,15 @@ function M.setup()
 end
 
 M.keys = {
-	{ 'gD',        vim.lsp.buf.declaration,     desc = "Go to declaration" },
-	{ 'gd',        vim.lsp.buf.definition,      desc = "Go to definition" },
-	{ 'K',         vim.lsp.buf.hover,           desc = "Show infomation" },
-	{ 'gI',        vim.lsp.buf.implementation,  desc = "Go to implementation" },
-	{ '<C-k>',     vim.lsp.buf.signature_help,  desc = "Show help" },
-	{ '<space>D',  vim.lsp.buf.type_definition, },
-	{ '<space>rn', vim.lsp.buf.rename,          desc = "Rename" },
+	{ 'gD',         vim.lsp.buf.declaration,     desc = "Go to declaration" },
+	{ 'gd',         vim.lsp.buf.definition,      desc = "Go to definition" },
+	{ 'K',          vim.lsp.buf.hover,           desc = "Show infomation" },
+	{ 'gI',         vim.lsp.buf.implementation,  desc = "Go to implementation" },
+	{ '<C-k>',      vim.lsp.buf.signature_help,  desc = "Show help" },
+	{ '<space>D',   vim.lsp.buf.type_definition, },
+	{ '<space>rn',  vim.lsp.buf.rename,          desc = "Rename" },
 	-- { mode = 'nv', '<space>ca', vim.lsp.buf.code_action, desc = "重命名" },
-	{ mode = 'n',  'gR',                        vim.lsp.buf.references, }
+	{ mode = 'n',   'gR',                        vim.lsp.buf.references, },
+	{ "<leader>fc", vim.lsp.buf.format,        desc = "Format Code" },
 }
 return M

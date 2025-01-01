@@ -1,6 +1,7 @@
 return {
 	{
 		'ollykel/v-vim',
-		event = "VeryLazy"
+		lazy = true,
+		ft = "v",
 	},
 }
