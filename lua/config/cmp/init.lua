@@ -33,20 +33,25 @@ function M.setup()
 			{
 				{ name = 'buffer' },
 				{ name = 'path' },
-				{name = 'codeium'}
+				{ name = 'codeium' }
 			}
 		),
 		-- 使用lspkind-nvim显示类型图标
 		formatting = {
-			format = lspkind.cmp_format({
-				with_text = true, -- do not show text alongside icons
-				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-				before = function(entry, vim_item)
-					-- Source 显示提示来源
-					vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-					return vim_item
+			format = function(entry, vim_item)
+				-- 使用 lspkind 为每个补全项类型加上图标
+				vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
+
+				local highlights_info = require("colorful-menu").cmp_highlights(entry)
+
+				-- if highlight_info==nil, which means missing ts parser, let's fallback to use default `vim_item.abbr`.
+				-- What this plugin offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
+				if highlights_info ~= nil then
+					vim_item.abbr_hl_group = highlights_info.highlights
+					vim_item.abbr = highlights_info.text
 				end
-			})
+				return vim_item
+			end
 		},
 		-- 快捷键绑定
 		mapping = {
@@ -92,5 +97,4 @@ function M.setup()
 		},
 	}
 end
-
 return M

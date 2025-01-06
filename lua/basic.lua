@@ -52,8 +52,11 @@ vim.diagnostic.config({ update_in_insert = true }) -- 插入模式下启用代�
 --鼠标事件
 vim.opt.mouse = "a"
 
-
 -- session options
 vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
 
 -- vim.cmd([[cnoremap wqa wa | qa]])
+--
+--
+vim.o.guifontwide = "Microsoft YaHei UI:h13"
+-- vim.o.guifont = "Monospace:h14"
