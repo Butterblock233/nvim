@@ -1,7 +1,7 @@
 return {
 	{
 		'nvimdev/lspsaga.nvim',
-		-- event = "VeryLazy",
+		event = "BufEnter",
 		lazy = true,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter', -- optional

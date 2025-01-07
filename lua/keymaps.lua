@@ -56,3 +56,8 @@ vim.keymap.set('n','<leader>st','<cmd>Lazy profile<CR>')
 -- 	vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], options)
 -- 	vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], options)
 -- end
+--
+--
+-- Command mode
+-- vim.keymap.set('c',"<CR>",'') --你小子害人不浅
+-- vim.keymap.set('c','','')

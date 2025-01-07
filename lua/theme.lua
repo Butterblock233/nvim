@@ -14,4 +14,4 @@ if not status_ok then
 	vim.notify("找不到主题" .. colorscheme)
 	return
 end
-vim.opt.guifontwide = '微软雅黑:h14'-- 中文字体
+-- vim.opt.guifontwide = '微软雅黑:h14'-- 中文字体
