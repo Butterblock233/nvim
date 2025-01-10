@@ -6,7 +6,10 @@ return {
 	{
 		'hrsh7th/cmp-nvim-lsp',
 		-- after = "neovim/nvim-lspconfig",
-		event = "InsertEnter",
+		event = {
+			"InsertEnter",
+			"CmdlineEnter"
+		},
 		dependencies = {
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
