@@ -45,7 +45,7 @@ return {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
-		cond = false,
+		cond = false, --disabled
 		version = "*",
 		lazy = true,
 		event = "VeryLazy",
@@ -86,8 +86,21 @@ return {
 		}
 	},
 	{
-    "xzbdmw/colorful-menu.nvim",
-	lazy = true,
-}
+		"xzbdmw/colorful-menu.nvim",
+		lazy = true,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		lazy = true,
+		event = "BufReadPost",
+		opts = function(_, opts)
+			-- Other blankline configuration here
+			return require("indent-rainbowline").make_opts(opts)
+		end,
+		dependencies = {
+			"TheGLander/indent-rainbowline.nvim",
+		},
+	}
 
 }
