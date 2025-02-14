@@ -4,7 +4,7 @@ set mouse=a
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    GuiFont! JetBrainsMono\ NF:h12
+	GuiFont! JetBrainsMono\ NF:h13
 endif
 
 " Disable GUI Tabline
@@ -21,7 +21,7 @@ endif
 if exists(':GuiScrollBar')
     GuiScrollBar 1
 endif
-
+" Enable Gui ligature
 if exists(':GuiRenderLigature')
     GuiRenderLigature 1
 endif

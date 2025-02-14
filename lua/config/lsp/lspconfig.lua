@@ -62,6 +62,6 @@ M.keys = {
 	{ '<space>rn',  vim.lsp.buf.rename,          desc = "Rename" },
 	-- { mode = 'nv', '<space>ca', vim.lsp.buf.code_action, desc = "重命名" },
 	{ mode = 'n',   'gR',                        vim.lsp.buf.references, },
-	{ "<leader>fc", vim.lsp.buf.format,        desc = "Format Code" },
+	-- { "<leader>fc", vim.lsp.buf.format,        desc = "Format Code" },
 }
 return M

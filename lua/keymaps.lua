@@ -39,11 +39,22 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 vim.keymap.set('n', 'f2', '<cmd>source ~/AppData/Local/nvim/init.lua<CR>', { desc = "重新加载配置" })
 
-vim.keymap.set('i', '<C-v>', '<C-r>+')
+--插入模式下粘贴文本
+vim.keymap.set('i', '<C-v>', '<cmd>set paste<CR><C-R>*<cmd>set nopaste<CR>')
 
-vim.keymap.set('n','<leader>st','<cmd>Lazy profile<CR>')
+vim.keymap.set('n', '<leader>st', '<cmd>Lazy profile<CR>')
 
--- vim.keymap.set('n', '<leader>f','')
+vim.keymap.set('n', '<leader>i',
+	function()
+		if not vim.lsp.inlay_hint.is_enabled() then
+			vim.lsp.inlay_hint.enable(true)
+			vim.print("Inlay hint enabled")
+		else
+			vim.lsp.inlay_hint.enable(false)
+			vim.print("Inlay hint disabled")
+		end
+	end
+) -- vim.keymap.set('n', '<leader>f','')
 --
 -- -- Terminal
 -- function _G.set_terminal_keymaps()
@@ -61,3 +72,4 @@ vim.keymap.set('n','<leader>st','<cmd>Lazy profile<CR>')
 -- Command mode
 -- vim.keymap.set('c',"<CR>",'') --你小子害人不浅
 -- vim.keymap.set('c','','')
+

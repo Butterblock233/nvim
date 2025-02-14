@@ -62,7 +62,7 @@ return {
     lualine_b = { "branch" }, ]]
 	{
 		"equalsraf/neovim-gui-shim",
-		lazy = true,
+		-- lazy = true,
 	},
 	{
 		"lewis6991/gitsigns.nvim",

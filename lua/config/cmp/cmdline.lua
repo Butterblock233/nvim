@@ -7,12 +7,15 @@ function M.setup()
 
 	vim.keymap.set('c', '<C-n>', cmp.mapping.select_next_item())
 	vim.keymap.set('c', '<C-p>', cmp.mapping.select_prev_item())
+	vim.keymap.set('c','<C-Tab>','')
 	cmp.setup.cmdline(':', {
 		mapping = {
 			['<tab>'] = cmp.mapping.confirm({
-				select = true,
+				select = false,
 				behavior = cmp.ConfirmBehavior.Replace
 			}),
+			['<C-CR>'] = cmp.mapping.complete_common_string(),
+			-- ['<C-<Tab>'] = '',
 		},
 		sources = cmp.config.sources({
 			{ name = 'path' }

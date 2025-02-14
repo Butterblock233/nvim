@@ -1,7 +1,6 @@
 require('basic')
 require('functions')
 require('lazy-nvim')
-require('lazy').setup('plugins')
 require('theme')
 require('keymaps')
 --require('custom')
