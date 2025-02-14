@@ -29,10 +29,15 @@ return {
 					haskell = {
 						"runghc $fileName"
 					},
+					cpp = {
+						"cd $dir &&",
+						"clang++ -std=c++20 -Wall -O2 $fileName -o $fileNameWithoutExt &&",
+						"$fileNameWithoutExt"
+					},
 					c = function()
 						local c_base = {
 							"cd $dir &&",
-							"gcc $fileName -o",
+							"clang $fileName -o",
 							"/tmp/$fileNameWithoutExt",
 						}
 						local c_exec = {
