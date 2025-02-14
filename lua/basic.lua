@@ -60,3 +60,13 @@ vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
 --
 vim.o.guifontwide = "Microsoft YaHei UI:h13"
 -- vim.o.guifont = "Monospace:h14"
+--
+--
+
+--自动换行设置
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.bo.formatoptions = vim.bo.formatoptions .. "ro"
+    end,
+})
