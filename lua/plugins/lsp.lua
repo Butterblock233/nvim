@@ -17,50 +17,7 @@ return {
 			keys = require("config.lsp.lspsaga").keys,
 			opts = require("config.lsp.lspsaga").opts,
 		},
-		{
-			"ray-x/lsp_signature.nvim",
-			event = "InsertEnter",
-			-- event = "VeryLazy",
-			opts = {},
-			keys = {
-				{
-					mode = "i",
-					"<C-i>",
-					function()
-						require("lsp_signature").toggle_float_win()
-					end,
-					{ silent = true, noremap = true, desc = "toggle signature" },
-				},
-				{
-					mode = "n",
-					"<leader>if",
-					function()
-						require("lsp_signature").toggle_float_win()
-					end,
-					{ silent = true, noremap = true, desc = "toggle signature" },
-				},
-			},
-			config = function()
-				vim.api.nvim_create_autocmd("LspAttach", {
-					callback = function(args)
-						local bufnr = args.buf
-						local client = vim.lsp.get_client_by_id(args.data.client_id)
-						if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-							return
-						end
-						require("lsp_signature").on_attach({
-							-- ... setup options here ...
-							bind = true,
-							floating_window = false, -- 启用浮动窗口
-							hint_enable = true, -- 启用内联提示
-							hint_prefix = "", -- 设置内联提示的前缀
-						}, bufnr)
-					end,
-				})
-				vim.notify("Lsp signature enabled")
-			end,
-		},
-
+		
 		--LSP三件套
 		{
 			"williamboman/mason.nvim",
