@@ -17,7 +17,7 @@ return {
 			keys = require("config.lsp.lspsaga").keys,
 			opts = require("config.lsp.lspsaga").opts,
 		},
-		
+
 		--LSP三件套
 		{
 			"williamboman/mason.nvim",

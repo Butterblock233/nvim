@@ -27,12 +27,12 @@ return {
 						"$dir/$fileNameWithoutExt",
 					},
 					haskell = {
-						"runghc $fileName"
+						"runghc $fileName",
 					},
 					cpp = {
 						"cd $dir &&",
 						"clang++ -std=c++20 -Wall -O2 $fileName -o $fileNameWithoutExt &&",
-						"$fileNameWithoutExt"
+						"$fileNameWithoutExt",
 					},
 					c = function()
 						local c_base = {

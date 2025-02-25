@@ -1,6 +1,6 @@
 return {
 	{
-		'ollykel/v-vim',
+		"ollykel/v-vim",
 		lazy = true,
 		ft = "v",
 	},

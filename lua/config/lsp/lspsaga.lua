@@ -17,8 +17,8 @@ M.opts = {
 		max_height = 0.3,
 		cursorline = true,
 		keys = {
-			quit = 'q',
-			exec = '<CR>',
+			quit = "q",
+			exec = "<CR>",
 		},
 	},
 	lightbulb = {
@@ -35,9 +35,8 @@ M.opts = {
 	},
 }
 M.keys = {
-	{ 'ga',   '<cmd>Lspsaga code_action<CR>', mode = 'n', desc = "Code Action" },
-	{ 'gr',   '<cmd>Lspsaga rename<CR>',      mode = 'n', desc = "Rename" },
-	{ '<f2>', '<cmd>Lspsaga rename<CR>',      mode = 'n', desc = "Rename" },
+	{ "ga", "<cmd>Lspsaga code_action<CR>", mode = "n", desc = "Code Action" },
+	{ "gr", "<cmd>Lspsaga rename<CR>", mode = "n", desc = "Rename" },
+	{ "<f2>", "<cmd>Lspsaga rename<CR>", mode = "n", desc = "Rename" },
 }
 return M
-

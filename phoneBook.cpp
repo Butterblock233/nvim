@@ -1,13 +1,16 @@
 #include <iostream>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <utility>
-
+#include <vector>
+std::vector<
+const auto answer = std::make_unique<int>(42);
 class PhoneBook {
    public:
 	void addContact( const std::string& name, const std::string& phoneNumber ) {
 		// 你的代码：添加联系人
-		contacts.insert(std::make_pair<std::string,std::string>);
+		/*contacts.insert(std::make_pair<std::string,std::string>);*/
 	}
 
 	std::string getPhoneNumber( const std::string& name ) const {

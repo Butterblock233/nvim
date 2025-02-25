@@ -5,7 +5,8 @@ M.keys = {
 		mode = "i",
 		"<C-i>",
 		function()
-			require("lsp_signature").toggle_float_win()
+			-- require("lsp_signature").toggle_float_win()
+			M.toggle_float_win()
 		end,
 		{ silent = true, noremap = true, desc = "Toggle signature" },
 	},
@@ -13,7 +14,8 @@ M.keys = {
 		mode = "n",
 		"<leader>if",
 		function()
-			require("lsp_signature").toggle_float_win()
+			-- require("lsp_signature").toggle_float_win()
+			M.toggle_float_win()
 		end,
 		{ silent = true, noremap = true, desc = "Toggle signature" },
 	},
@@ -35,6 +37,13 @@ function M.setup(_, opts)
 	})
 end
 
+function M.toggle_float_win()
+	if M.opts.floating_window then
+		M.opts.floating_window = false
+	else
+		M.opts.floating_window = true
+	end
+end
 M.opts = {
 	bind = true,
 	floating_window = false, -- 默认启用浮动窗口

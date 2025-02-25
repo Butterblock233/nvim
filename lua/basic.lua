@@ -11,12 +11,12 @@ vim.opt.shiftwidth = 4 -- insert 4 spaces on a tab
 vim.opt.expandtab = false -- tabs are spaces, mainly because of python
 -- Tab options for python
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.expandtab = false
-  end,
+	pattern = "python",
+	callback = function()
+		vim.opt_local.tabstop = 4
+		vim.opt_local.shiftwidth = 4
+		vim.opt_local.expandtab = false
+	end,
 })
 
 -- UI config
@@ -65,8 +65,8 @@ vim.o.guifontwide = "Microsoft YaHei UI:h13"
 
 --自动换行设置
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function()
-        vim.bo.formatoptions = vim.bo.formatoptions .. "ro"
-    end,
+	pattern = "*",
+	callback = function()
+		vim.bo.formatoptions = vim.bo.formatoptions .. "ro"
+	end,
 })

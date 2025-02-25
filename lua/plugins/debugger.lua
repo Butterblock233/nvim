@@ -16,7 +16,7 @@ return {
 		keys = require("config.dap.keys"),
 		config = function()
 			require("config.dap").setup()
-		end
+		end,
 	},
 
 	-- fancy UI for the debugger
@@ -73,6 +73,6 @@ return {
 	},
 	{
 		"mfussenegger/nvim-dap-python",
-		lazy = true
-	}
+		lazy = true,
+	},
 }

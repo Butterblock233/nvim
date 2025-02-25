@@ -1,25 +1,25 @@
 return {
 	{
-		'goolord/alpha-nvim',
+		"goolord/alpha-nvim",
 		lazy = true,
 	},
 
 	{
-		'echasnovski/mini.starter',
+		"echasnovski/mini.starter",
 		lazy = true,
 	},
 	{
-		'Mythos-404/xmake.nvim',
-		version = '^3',
+		"Mythos-404/xmake.nvim",
+		version = "^3",
 		lazy = true,
-		event = 'BufReadPost',
-		ft = 'lua',
+		event = "BufReadPost",
+		ft = "lua",
 		dependencies = {
 			{
 				"nvim-notify",
 				lazy = true,
-				event = "VeryLazy"
-			}
+				event = "VeryLazy",
+			},
 		},
 		opts = {
 
@@ -43,30 +43,32 @@ return {
 		-- }),
 	},
 	{
-		'Civitasv/cmake-tools.nvim',
+		"Civitasv/cmake-tools.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			'nvim-lua/plenary.nvim'
-		}
+			"nvim-lua/plenary.nvim",
+		},
 	},
 	{
-		'alexander-born/bazel.nvim',
+		"alexander-born/bazel.nvim",
 		dependencies = {
-			'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-lua/plenary.nvim",
+		},
 		cond = false,
 	},
 
 	{
-		'nvimdev/dashboard-nvim',
+		"nvimdev/dashboard-nvim",
 		lazy = true,
 	},
 	{
-		'ahmedkhalf/project.nvim',
+		"ahmedkhalf/project.nvim",
 		-- config=true,
 		cond = false,
-		event = 'VeryLazy',
+		event = "VeryLazy",
 		config = function()
-			require('project_nvim').setup({
+			require("project_nvim").setup({
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below

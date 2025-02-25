@@ -1,7 +1,7 @@
 return {
 	{
 		"AndrewRadev/exercism.vim",
-		event = "VeryLazy"
+		event = "VeryLazy",
 	},
 
 	"epwalsh/obsidian.nvim",
@@ -26,7 +26,7 @@ return {
 		workspaces = {
 			{
 				name = "Obsidian",
-				path = "D:/Butter_Block/Obsidian"
+				path = "D:/Butter_Block/Obsidian",
 			},
 			-- {
 			--   name = "work",

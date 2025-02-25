@@ -1,6 +1,6 @@
 return {
 	{
-		'nvim-neo-tree/neo-tree.nvim',
+		"nvim-neo-tree/neo-tree.nvim",
 		cond = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -21,26 +21,24 @@ return {
 		opts = {
 			filesystem = {
 				hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-
 			},
 			default_component_configs = {
 				git_status = {
 					symbols = {
 						-- Change type
-						added     = "✚",
-						deleted   = "D  ",
-						modified  = "M",
-						renamed   = "󰑕",
+						added = "✚",
+						deleted = "D  ",
+						modified = "M",
+						renamed = "󰑕",
 						-- Status type
 						untracked = "U",
-						ignored   = "",
-						unstaged  = "",
-						staged    = "",
-						conflict  = "",
-					}
-				}
-			}
-
+						ignored = "",
+						unstaged = "",
+						staged = "",
+						conflict = "",
+					},
+				},
+			},
 		},
 	},
 	{
@@ -54,8 +52,10 @@ return {
 		},
 		keys = {
 			{
-				"<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = 'Toggle Nvim-Tree' }
-			}
+				"<leader>e",
+				"<cmd>NvimTreeToggle<CR>",
+				{ desc = "Toggle Nvim-Tree" },
+			},
 		},
 		opts = {
 			sort = {
@@ -68,12 +68,12 @@ return {
 				group_empty = true,
 				icons = {
 					padding = "  ",
-				}
+				},
 			},
 			filters = {
 				dotfiles = true,
 			},
-		}
+		},
 	},
 	{
 		"OXY2DEV/markview.nvim",
@@ -82,8 +82,8 @@ return {
 		-- event = "VeryLazy",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
-		}
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
 	{
 		"xzbdmw/colorful-menu.nvim",
@@ -101,6 +101,5 @@ return {
 		dependencies = {
 			"TheGLander/indent-rainbowline.nvim",
 		},
-	}
-
+	},
 }

@@ -7,11 +7,11 @@ return {
 	},
 	-- onedark
 	{
-		'navarasu/onedark.nvim',
+		"navarasu/onedark.nvim",
 		lazy = true,
 	},
 	{
-		'lunarvim/lunar.nvim',
+		"lunarvim/lunar.nvim",
 		lazy = true,
 	},
 }
