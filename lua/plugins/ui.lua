@@ -166,4 +166,13 @@ return {
 		lazy = true,
 		-- event = "VeryLazy"
 	},
+	{
+		"numirias/semshi",
+		ft = "python",
+		lazy = true,
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			{ "neovim/pynvim" },
+		},
+	},
 }
