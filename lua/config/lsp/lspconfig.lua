@@ -3,6 +3,13 @@ local M = {}
 -- local lspconfig = require("lspconfig")
 -- local lspconfig = {}
 M.opts = {}
+-- 启用虚拟文本
+vim.diagnostic.config({
+	virtual_text = true, -- 显示错误消息
+	signs = true, -- 显示行号旁的标记
+	underline = true, -- 显示下划线
+})
+
 function M.setup()
 	local lspconfig = require("lspconfig")
 	-- 自动配置已安装的 LSP 服务器
