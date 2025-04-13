@@ -37,7 +37,18 @@ return {
 		-- see below for full list of options 👇
 	},
 	{
+		"hisbaan/dataview.nvim",
+		-- only load dataview.nvim for files in your obsidian vault	
+		event = "VeryLazy",
+		-- configuration here, see below for full configuration options
+		opts = {
+			vault_dir = "D:/Butter_Block/Obsidian",
+			buffer_type = "float", -- float | split | vsplit | tab
+		},
+	},
+	{
 		"kawre/leetcode.nvim",
+		event = "VeryLazy",
 		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
