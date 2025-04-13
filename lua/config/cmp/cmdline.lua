@@ -5,7 +5,22 @@ function M.setup()
 	-- 禁用 Neovim 原生补全
 	vim.o.wildmode = ""
 	vim.o.wildmenu = false
+	-- 覆盖 Neovim 默认的 <C-n>/<C-p> 映射
+	vim.keymap.set("c", "<C-n>", function()
+		if cmp.visible() then
+			cmp.select_next_item()
+		else
+			cmp.complete() -- 强制触发补全，而非历史命令
+		end
+	end, { noremap = true, silent = true }) -- 使用 noremap 防止递归映射
 
+	vim.keymap.set("c", "<C-p>", function()
+		if cmp.visible() then
+			cmp.select_prev_item()
+		else
+			cmp.complete() -- 强制触发补全，而非历史命令
+		end
+	end, { noremap = true, silent = true })
 	-- 定义补全映射
 	local mapping = {
 		-- Tab 键：确认选中项（若补全菜单可见），否则插入普通 Tab
@@ -16,23 +31,6 @@ function M.setup()
 				fallback() -- 普通 Tab 行为
 			end
 		end, { "i", "c" }),
-
-		-- C-n/C-p：上下移动补全项
-		["<C-n>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			else
-				cmp.complete() -- 若补全菜单不可见，则触发补全
-			end
-		end),
-
-		["<C-p>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			else
-				cmp.complete() -- 若补全菜单不可见，则触发补全
-			end
-		end),
 
 		-- Enter 键：补全公共前缀（类似 VS Code）
 		["<CR>"] = cmp.mapping(function(fallback)
