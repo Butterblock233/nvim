@@ -23,6 +23,7 @@ local highlights = {
 	-- 基础高亮组
 	-- Normal = { fg = "#D4D4D4", bg = "#1E1E1E" }, -- 正常文本
 	-- Comment = { fg = "#6A9955", italic = true }, -- 注释
+	Statement = { link = "Keyword" },
 
 	-- 语法高亮组
 	Keyword = { fg = "#569CD6", italic = true }, -- 关键字
@@ -73,9 +74,11 @@ local highlights = {
 
 	-- lua
 	luaTable = { fg = "#4ec9b0" },
+
+	-- Typescript
 }
 
-local function reload_highlight(highlights)
+local function reload_highlight()
 	-- 应用高亮配置
 	for group, properties in pairs(highlights) do
 		vim.api.nvim_set_hl(0, group, properties)
@@ -83,10 +86,13 @@ local function reload_highlight(highlights)
 end
 
 vim.keymap.set("n", "<C-F4>", function()
-	reload_highlight(highlights)
+	reload_highlight()
 end, { desc = "Reload Hightlight Group" })
 
-if vim.filetype ~= "lua" then
-	reload_highlight(highlights)
-	vim.notify("Hightlight group loaded")
-end
+reload_highlight()
+-- 自定义高亮优先级
+-- vim.treesitter.query.set("python", "highlights", [[
+--     (call
+--         function: (identifier) @function.call
+--         arguments: (argument_list)) @function.call (#set! priority 105)
+-- ]])
