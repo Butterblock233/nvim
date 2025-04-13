@@ -1,10 +1,17 @@
+let gui_font = DotenvGet('NVIM_GUI_FONT')
 " Enable Mouse
 set mouse=a
 
-" Set Editor Font
+" 检查 GuiFont 命令是否存在
 if exists(':GuiFont')
-    " Use GuiFont! to ignore font errors
-	GuiFont! JetBrainsMono\ NF:h13
+    " 获取 .env 文件中的字体配置
+    let gui_font = DotenvGet('NVIM_GUI_FONT')
+    
+    " 确保字体配置不为空
+    if !empty(gui_font)
+        " 使用 execute 动态执行 GuiFont! 命令
+        execute 'GuiFont!' gui_font
+    endif
 endif
 
 " Disable GUI Tabline
@@ -25,7 +32,7 @@ endif
 if exists(':GuiRenderLigature')
     GuiRenderLigature 1
 endif
-  
+
 " Right Click Context Menu (Copy-Cut-Paste)
 nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
 inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>

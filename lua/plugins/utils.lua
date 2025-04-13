@@ -36,14 +36,20 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-		-- use opts = {} for passing setup options
+		-- Use opts = {} for passing setup options
 		-- this is equivalent to setup({}) function
 	},
 	{
 		"vidocqh/auto-indent.nvim",
-		opts = {},
-		cond = false,
-		event = "VeryLazy",
+		opts = {
+			---@param lnum number
+			---@return number
+			indentexpr = function(lnum)
+				return require("nvim-treesitter.indent").get_indent(lnum)
+			end,
+		},
+		cond = true,
+		event = "InsertEnter",
 	},
 	{
 		"kylechui/nvim-surround",
@@ -183,6 +189,25 @@ return {
 			-- order to load the plugin when the command is run for the first time
 			keys = {
 				{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+			},
+		},
+		{ "Leonardo-Luz/dotenv.nvim", url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
+		{"tpope/vim-dotenv",
+	},
+		{
+			"ellisonleao/dotenv.nvim",
+			cond = false,
+			-- init = function()
+			-- 	require("dotenv").setup({
+			-- 		enable_on_load = true, -- will load your .env file upon loading a buffer
+			-- 		verbose = false, -- show error notification if .env file is not found and if .env is loaded
+			-- 		file_name = ".env", -- will override the default file name '.env'
+			-- 	})
+			-- end,
+			config = {
+				enable_on_load = true, -- will load your .env file upon loading a buffer
+				verbose = true, -- show error notification if .env file is not found and if .env is loaded
+				-- file_name = "~/.config/nvim/.env", -- will override the default file name '.env'
 			},
 		},
 	},

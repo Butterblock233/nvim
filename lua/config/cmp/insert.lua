@@ -5,6 +5,20 @@ function M.setup()
 	local lspkind = require("lspkind")
 	local types = require("cmp.types")
 	local compare = require("cmp.config.compare")
+				
+	local cmp_sources = {
+			{ name = "nvim_lsp" },
+			-- 以下插件作为前提：
+			-- { 'L3MON4D3/LuaSnip' },
+			-- { 'saadparwaiz1/cmp_luasnip' },
+			{ name = "luasnip" },
+			{ name = "buffer" },
+			{ name = "path" },
+		}
+	if vim.env.CODEIUM then do
+		table.insert(cmp_sources,{name = "codeium"})
+	end
+end
 
 	cmp.setup({
 
@@ -22,17 +36,7 @@ function M.setup()
 			end,
 		},
 		-- 来源
-		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			-- 以下插件作为前提：
-			-- { 'L3MON4D3/LuaSnip' },
-			-- { 'saadparwaiz1/cmp_luasnip' },
-			{ name = "luasnip" },
-		}, {
-			{ name = "buffer" },
-			{ name = "path" },
-			{ name = "codeium" },
-		}),
+		sources = cmp.config.sources(cmp_sources),
 		-- 使用lspkind-nvim显示类型图标
 		formatting = {
 			format = function(entry, vim_item)

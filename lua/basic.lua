@@ -58,7 +58,6 @@ vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
 -- vim.cmd([[cnoremap wqa wa | qa]])
 --
 --
-vim.o.guifontwide = "Microsoft YaHei UI:h13"
 -- vim.o.guifont = "Monospace:h14"
 --
 --
