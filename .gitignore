@@ -3,7 +3,6 @@ coc-settings.json
 draft.txt
 .vscode/*
 lazy-lock.json
-.gitignore
 test.lua
 lsp.lua.bak
 ginit.vim
