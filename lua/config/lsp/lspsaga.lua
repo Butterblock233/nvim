@@ -38,5 +38,6 @@ M.keys = {
 	{ "ga", "<cmd>Lspsaga code_action<CR>", mode = "n", desc = "Code Action" },
 	{ "gr", "<cmd>Lspsaga rename<CR>", mode = "n", desc = "Rename" },
 	{ "<f2>", "<cmd>Lspsaga rename<CR>", mode = "n", desc = "Rename" },
+	{"<leader>l","<cmd>Lspsaga outline<CR>", mode = {"n"} , desc = "Open outline"},
 }
 return M

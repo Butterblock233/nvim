@@ -29,7 +29,9 @@ return {
 			},
 			{
 				"<leader>gg",
-				require("snacks").lazygit.open,
+				function ()
+					require("snacks").lazygit.open()
+				end,
 				desc = "Open Lazygit"
 			},
 		},
