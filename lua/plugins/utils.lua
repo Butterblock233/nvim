@@ -40,7 +40,14 @@ return {
 		-- this is equivalent to setup({}) function
 	},
 	{
+		"NMAC427/guess-indent.nvim",
+		event = "InsertEnter",
+		opts = {}
+
+},
+	{
 		"vidocqh/auto-indent.nvim",
+		cond = false,
 		opts = {
 			---@param lnum number
 			---@return number
@@ -48,7 +55,6 @@ return {
 				return require("nvim-treesitter.indent").get_indent(lnum)
 			end,
 		},
-		cond = true,
 		event = "InsertEnter",
 	},
 	{
@@ -150,65 +156,44 @@ return {
 			},
 		},
 	},
+	-- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 	{
-		"folke/snacks.nvim",
-		priority = 1000,
-		lazy = false,
-		event = "VeryLazy",
-		cond = true,
-		---@type snacks.Config
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			dim = { enabled = true },
-			toggle = {
-				enabled = true,
-				map = vim.keymap.set, -- keymap.set function to use
-				which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
-				notify = true, -- show a notification when toggling
-				-- icons for enabled/disabled states
-			},
+		"kdheepak/lazygit.nvim",
+		cond = false,
+		lazy = true,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
 		},
-		-- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
-		{
-			"kdheepak/lazygit.nvim",
-			lazy = true,
-			cmd = {
-				"LazyGit",
-				"LazyGitConfig",
-				"LazyGitCurrentFile",
-				"LazyGitFilter",
-				"LazyGitFilterCurrentFile",
-			},
-			-- optional for floating window border decoration
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-			-- setting the keybinding for LazyGit with 'keys' is recommended in
-			-- order to load the plugin when the command is run for the first time
-			keys = {
-				{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
 		},
-		{ "Leonardo-Luz/dotenv.nvim", url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
-		{"tpope/vim-dotenv",
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
 	},
-		{
-			"ellisonleao/dotenv.nvim",
-			cond = false,
-			-- init = function()
-			-- 	require("dotenv").setup({
-			-- 		enable_on_load = true, -- will load your .env file upon loading a buffer
-			-- 		verbose = false, -- show error notification if .env file is not found and if .env is loaded
-			-- 		file_name = ".env", -- will override the default file name '.env'
-			-- 	})
-			-- end,
-			config = {
-				enable_on_load = true, -- will load your .env file upon loading a buffer
-				verbose = true, -- show error notification if .env file is not found and if .env is loaded
-				-- file_name = "~/.config/nvim/.env", -- will override the default file name '.env'
-			},
+	{ "Leonardo-Luz/dotenv.nvim", url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
+	{ "tpope/vim-dotenv" },
+	{
+		"ellisonleao/dotenv.nvim",
+		cond = false,
+		-- init = function()
+		-- 	require("dotenv").setup({
+		-- 		enable_on_load = true, -- will load your .env file upon loading a buffer
+		-- 		verbose = false, -- show error notification if .env file is not found and if .env is loaded
+		-- 		file_name = ".env", -- will override the default file name '.env'
+		-- 	})
+		-- end,
+		config = {
+			enable_on_load = true, -- will load your .env file upon loading a buffer
+			verbose = true, -- show error notification if .env file is not found and if .env is loaded
+			-- file_name = "~/.config/nvim/.env", -- will override the default file name '.env'
 		},
 	},
 }
