@@ -27,21 +27,22 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-			{ "<leader>bc", "<Cmd>bw<CR>", desc = "Delete current buffer" },
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",              desc = "Toggle pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>",   desc = "Delete non-pinned buffers" },
+			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",            desc = "Delete other buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",             desc = "Delete buffers to the right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",              desc = "Delete buffers to the left" },
+			{ "<leader>bc", "<Cmd>bw<CR>",                               desc = "Delete current buffer" },
 			{ "<leader>ba", "<Cmd>BufferLineCloseOthers<CR><cmd>bw<CR>", desc = "Delete all buffers" },
-			{ "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-			{ "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-			{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-			{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+			{ "<C-S-Tab>",  "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
+			{ "<C-Tab>",    "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
+			{ "[b",         "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
+			{ "]b",         "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
 		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		priority = 100,
 		-- event = "VeryLazy",
 		init = function()
 			vim.g.lualine_laststatus = vim.o.laststatus
@@ -163,16 +164,46 @@ return {
 	},
 	{
 		"rcarriga/nvim-notify",
+		desc = "Better notice showing UI",
 		lazy = true,
 		-- event = "VeryLazy"
 	},
 	{
 		"numirias/semshi",
+		cond = false,
+		desc = "Provide a better highlight for Python",
 		ft = "python",
 		lazy = true,
 		build = ":UpdateRemotePlugins",
 		dependencies = {
 			{ "neovim/pynvim" },
+		},
+	},
+	{
+		"nvim-tree/nvim-web-devicons",
+		desc = "A plugin to show icons",
+		lazy = true,
+		opts = {
+			override = {
+				zsh = {
+					icon = "",
+					color = "#428850",
+					cterm_color = "65",
+					name = "Zsh",
+				},
+				go = {
+					icon = "",
+					name = "Go",
+					cterm_color = 74,
+					color = "#519aba",
+				},
+				ts = {
+					icon = "",
+					name = "Typescript",
+					cterm_color = 74,
+					color = "#519aba",
+				},
+			},
 		},
 	},
 }
