@@ -1,4 +1,14 @@
 return {
+	-- If you want neo-tree's file operations to work with LSP (updating imports, etc.), you can use a plugin like
+	-- https://github.com/antosha417/nvim-lsp-file-operations:
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neo-tree/neo-tree.nvim",
+		},
+		opts = {}
+	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cond = true,

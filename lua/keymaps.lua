@@ -42,7 +42,7 @@ vim.keymap.set("i", "<C-v>", "<cmd>set paste<CR><C-R>*<cmd>set nopaste<CR>")
 
 vim.keymap.set("n", "<leader>st", "<cmd>Lazy profile<CR>")
 
-vim.keymap.set("n", "<leader>i", function()
+vim.keymap.set("n", "<leader>ih", function()
 	if not vim.lsp.inlay_hint.is_enabled() then
 		vim.lsp.inlay_hint.enable(true)
 		vim.print("Inlay hint enabled")

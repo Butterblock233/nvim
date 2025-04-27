@@ -1,3 +1,6 @@
+local lspsaga = require("config.lsp.utils.lspsaga")
+local lspconfig = require("config.lsp.utils.lspconfig")
+local mason = require("config.lsp.utils.mason")
 return {
 	{
 		"VidocqH/lsp-lens.nvim",
@@ -23,8 +26,8 @@ return {
 				"nvim-treesitter/nvim-treesitter", -- optional
 				"nvim-tree/nvim-web-devicons", -- optional
 			},
-			keys = require("config.lsp.lspsaga").keys,
-			opts = require("config.lsp.lspsaga").opts,
+			keys = lspsaga.keys,
+			opts = lspsaga.opts,
 		},
 
 		--LSP三件套
@@ -32,6 +35,7 @@ return {
 			"williamboman/mason.nvim",
 			config = true,
 			lazy = true,
+			cond = true,
 		},
 		{
 			"williamboman/mason-lspconfig.nvim",
@@ -39,6 +43,7 @@ return {
 				ensure_installed = { "lua_ls", "pyright" }, -- 指定需要自动安装的 LSP 服务器
 			},
 			lazy = true,
+			cond = true,
 		},
 		{
 			"neovim/nvim-lspconfig",
@@ -48,10 +53,10 @@ return {
 				{ "williamboman/mason-lspconfig.nvim" },
 			},
 			config = function()
-				require("config.lsp.lspconfig").setup()
-				require("config.lsp.mason").setup()
+				lspconfig.setup()
+				mason.setup()
 			end,
-			keys = require("config.lsp.lspconfig").keys,
+			keys = lspconfig.keys,
 		},
 	},
 }
