@@ -1,3 +1,7 @@
+require("project").setup({
+	use_defaults = true,
+	flags = { "pyproject.toml" }, -- Additional flags
+})
 return {
 	{
 		"goolord/alpha-nvim",
@@ -12,7 +16,7 @@ return {
 		"Mythos-404/xmake.nvim",
 		version = "^3",
 		lazy = true,
-		event = "BufReadPost",
+		event = "User ProjectEnter:xmake.lua",
 		ft = "lua",
 		dependencies = {
 			{
@@ -39,12 +43,10 @@ return {
 				language = "zh-cn", ---@type "en"|"zh-cn"
 			},
 		},
-		-- config = require("xmake").setup({
-		-- }),
 	},
 	{
 		"Civitasv/cmake-tools.nvim",
-		event = "VeryLazy",
+		event = "User ProjectEnter:CmakeLists.txt",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
@@ -84,6 +86,7 @@ return {
 			{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
 		lazy = false,
+		event = "User ProjectEnter:.venv",
 		ft = "python",
 		branch = "regexp", -- This is the regexp branch, use this for the new version
 		keys = {
@@ -95,7 +98,7 @@ return {
 	},
 	{
 		"benomahony/uv.nvim",
+		event = "User ProjectEnter:pyproject.toml",
 		-- opts = {},
-		event = "VeryLazy"
 	},
 }
