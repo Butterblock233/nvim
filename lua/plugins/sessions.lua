@@ -3,7 +3,8 @@ return {
 		"olimorris/persisted.nvim",
 		lazy = true,
 		cond = true,
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		cmd = {"SessionLoad","SessionSave","SessionSelect","SessionDelete","SessionLoadLast"},
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
 			require("persisted").setup({

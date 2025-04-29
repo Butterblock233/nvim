@@ -42,9 +42,8 @@ return {
 	{
 		"NMAC427/guess-indent.nvim",
 		event = "InsertEnter",
-		opts = {}
-
-},
+		opts = {},
+	},
 	{
 		"vidocqh/auto-indent.nvim",
 		cond = false,
@@ -178,8 +177,17 @@ return {
 			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
-	{ "Leonardo-Luz/dotenv.nvim", url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
-	{ "tpope/vim-dotenv" },
+	{ "Leonardo-Luz/dotenv.nvim", cond = false, url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
+	{
+		"tpope/vim-dotenv",
+		event = "VimEnter",
+		priority = 200,
+		config = function()
+			local dotenv_path = vim.fn.stdpath("config") .. "/.env"
+			vim.notify(dotenv_path)
+			vim.cmd("Dotenv " .. dotenv_path)
+		end,
+	},
 	{
 		"ellisonleao/dotenv.nvim",
 		cond = false,
