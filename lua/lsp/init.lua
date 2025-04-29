@@ -12,8 +12,9 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({
 	"clangd",
-	"luals",
-	"pyright",
+	"lua_ls",
 	"pwsh",
+	"pyright",
 })
+
 return M

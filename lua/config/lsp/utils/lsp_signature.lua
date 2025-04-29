@@ -17,6 +17,7 @@ M.keys = {
 			-- require("lsp_signature").toggle_float_win()
 			M.toggle_float_win()
 		end,
+		desc = "Toggle signature",
 		{ silent = true, noremap = true, desc = "Toggle signature" },
 	},
 }

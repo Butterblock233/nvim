@@ -11,24 +11,10 @@ vim.diagnostic.config({
 })
 
 function M.setup()
-	local lspconfig = require("lspconfig")
+	-- local lspconfig = require("lspconfig")
 	-- 自动配置已安装的 LSP 服务器
 	-- lspconfig.detekt.setup{}
 	-- lspconfig.gdtoolkit.setup{}
-	lspconfig.clangd.setup({
-		inlay_hint = true,
-	})
-	lspconfig.powershell_es.setup({
-		cmd = {
-			"pwsh",
-			"-NoLogo",
-			"-NoProfile",
-			"-Command",
-			"~/AppData/Local/nvim-data/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
-		},
-		filetypes = { "ps1", "psm1", "psd1" },
-		root_dir = lspconfig.util.find_git_ancestor,
-	})
 end
 
 M.keys = {
