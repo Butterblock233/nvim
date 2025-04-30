@@ -69,3 +69,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.formatoptions = vim.bo.formatoptions .. "ro"
 	end,
 })
+
+vim.o.guifont = vim.env.NVIM_GUI_FONT
+vim.o.guifontwide = vim.env.NVIM_GUI_FONT_WIDE
+vim.o.shell = vim.env.SHELL
