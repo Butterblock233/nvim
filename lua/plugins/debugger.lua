@@ -1,9 +1,13 @@
+require("project").setup({
+	use_default = true,
+})
 return {
 	{
 		"mfussenegger/nvim-dap",
 		recommended = true,
 		desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		event = "User ProjectEnter:*",
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			-- virtual text for the debugger
@@ -23,6 +27,7 @@ return {
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "nvim-neotest/nvim-nio" },
+		lazy = true,
 		-- stylua: ignore
 		keys = {
 			{ "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
@@ -73,6 +78,7 @@ return {
 	},
 	{
 		"mfussenegger/nvim-dap-python",
+		ft = "python",
 		lazy = true,
 	},
 }

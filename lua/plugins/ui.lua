@@ -1,3 +1,6 @@
+require("project").setup({
+	use_default = true
+})
 return {
 	-- using lazy.nvim
 	{
@@ -67,7 +70,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		event = "User ProjectEnter:.git",
 		config = {
 			signs = {
 				add = { text = "│" },

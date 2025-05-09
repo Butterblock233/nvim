@@ -98,6 +98,7 @@ return {
 	},
 	{
 		"benomahony/uv.nvim",
+		cond = false,
 		event = "User ProjectEnter:pyproject.toml",
 		-- opts = {},
 	},
