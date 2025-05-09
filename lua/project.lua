@@ -1,91 +1,54 @@
-local M = {
-	default_flags = {
-		-- Version Control
-		".git",
-		".hg",
-		-- Build Systems
-		"Makefile",
-		"CMakeLists.txt",
-		"xmake.lua",
-		"build.zig",
-		-- Language Specific
-		"package.json",
-		"pyproject.toml",
-		"Cargo.toml",
-		-- Environment
-		".venv",
-		"venv",
-		"requirements.txt",
-	},
-}
+local M = {}
 
---- @class ProjectSetupOpts
---- @field flags? string[] Additional project flags (supports file/dir patterns)
---- @field use_defaults? boolean Include default flags (default: true)
---- @field validators? table<string, fun(path:string):boolean> Custom validation per project type
+-- 用于缓存当前目录，避免重复调用 getcwd()
+local current_dir = nil
+local last_check_time = 0
+local debounce_ms = 100
 
-function M.setup(opts)
-	opts = vim.tbl_deep_extend("force", {
-		use_defaults = true,
-		flags = {},
-		validators = {},
-	}, opts or {})
-
-	-- Merge flags
-	local project_flags = opts.use_defaults and vim.list_extend(vim.deepcopy(M.default_flags), opts.flags) or opts.flags
-
-	-- Register all project types
-	local group = vim.api.nvim_create_augroup("ProjectEnterEvents", { clear = true })
-
-	vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufEnter" }, {
-		group = group,
-		pattern = "*",
-		callback = function()
-			vim.schedule(function()
-				for _, flag in ipairs(project_flags) do
-					local path = vim.fn.getcwd() .. "/" .. flag
-					if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then -- Fixed: Added closing parenthesis here
-						-- Run custom validator if exists
-						local validator = opts.validators[flag]
-						if not validator or validator(path) then
-							vim.api.nvim_exec_autocmds("User", {
-								pattern = "ProjectEnter:" .. flag,
-								modeline = false,
-							})
-						end
-					end
-				end
-			end)
-		end,
-	})
-
-	-- Declare all events for documentation
-	for _, flag in ipairs(project_flags) do
-		vim.api.nvim_create_autocmd("User", {
-			group = group,
-			pattern = "ProjectEnter:" .. flag,
-			callback = function() end,
-			desc = "Project type: " .. flag,
-		})
+-- 获取当前目录（缓存）
+local function get_current_dir()
+	local now = vim.uv.now()
+	if current_dir and now - last_check_time < debounce_ms then
+		return current_dir
 	end
+	current_dir = vim.fn.getcwd()
+	last_check_time = now
+	return current_dir
 end
 
---- Quick validator generators
-M.validators = {
-	--- Check if file contains pattern
-	--- @param pattern string
-	file_contains = function(pattern)
-		return function(path)
-			local file = io.open(path, "r")
-			if not file then
-				return false
-			end
-			local content = file:read("*a")
-			file:close()
-			return content:find(pattern) ~= nil
-		end
-	end,
-}
+-- 检查路径是否存在（文件或目录）
+local function path_exists(path)
+	return vim.uv.fs_stat(path) ~= nil
+end
+
+-- 事件回调：仅当当前目录下存在 [pattern] 时才继续执行
+function M.project_enter_callback(event)
+	local pattern = event.match
+	if not pattern then
+		return false
+	end
+
+	local dir = get_current_dir()
+	local path = dir .. "/" .. pattern
+
+	if not path_exists(path) then
+		return false -- 路径不存在，跳过事件
+	end
+
+	return true -- 路径存在，继续执行事件链
+end
+
+-- 注册 User ProjectEnter 事件
+function M.setup()
+	local group = vim.api.nvim_create_augroup("ProjectEnterOnDemand", { clear = true })
+
+	-- 注册 User ProjectEnter 事件模板
+	vim.api.nvim_create_autocmd("User", {
+		group = group,
+		pattern = "ProjectEnter:*",
+		callback = M.project_enter_callback,
+		desc = "Conditionally trigger ProjectEnter events only when [pattern] exists in current directory",
+	})
+end
 
 return M
-
