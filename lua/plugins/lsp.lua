@@ -6,6 +6,7 @@ return {
 	{
 		"VidocqH/lsp-lens.nvim",
 		lazy = true,
+		priprity = 50,
 		-- event = "BufReadPost",
 		opts = {
 			enable = true,
@@ -44,7 +45,7 @@ return {
 			config = {
 				ensure_installed = {
 					"lua_ls",
-					"pyright",
+					"basedpyright",
 					"powershell_es",
 					"clangd",
 				}, -- 指定需要自动安装的 LSP 服务器
@@ -58,7 +59,7 @@ return {
 			dependencies = {
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
-				{ "VidocqH/lsp-lens.nvim" },
+				{ "VidocqH/lsp-lens.nvim", priprity = 25 },
 				{ "nvimdev/lspsaga.nvim" },
 			},
 			config = function()

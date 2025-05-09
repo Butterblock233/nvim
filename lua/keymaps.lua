@@ -50,7 +50,7 @@ vim.keymap.set("n", "<leader>ih", function()
 		vim.lsp.inlay_hint.enable(false)
 		vim.print("Inlay hint disabled")
 	end
-end)
+end, { desc = "Toggle inlay_hint" })
 -- vim.keymap.set('n', '<leader>f','')
 --
 -- -- Terminal
