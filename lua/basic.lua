@@ -1,5 +1,4 @@
 -- Hint: use `:h <option>` to figure out the meaning if needed
-vim.opt.clipboard = "unnamedplus" -- use system clipboard
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.mouse = "a" -- allow the mouse to be used in Nvim
 vim.g.mapleader = " "
@@ -70,6 +69,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.o.guifont = vim.env.NVIM_GUI_FONT
-vim.o.guifontwide = vim.env.NVIM_GUI_FONT_WIDE
-vim.o.shell = vim.env.SHELL
+-- Neovim clipboard config
+vim.opt.clipboard = "unnamedplus" -- use system clipboard
+if vim.fn.has("wsl") then
+	vim.g.clipboard = {
+		name = "win32yank",
+		copy = {
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf",
+		},
+		paste = {
+			["+"] = "win32yank.exe -o --lf",
+			["*"] = "win32yank.exe -o --lf",
+		},
+	}
+end
