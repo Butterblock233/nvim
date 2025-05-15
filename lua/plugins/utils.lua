@@ -180,12 +180,14 @@ return {
 	{ "Leonardo-Luz/dotenv.nvim", cond = false, url = "https://github.com/Leonardo-Luz/dotenv.nvim" },
 	{
 		"tpope/vim-dotenv",
+		cond = false,
 		event = "VimEnter",
-		priority = 200,
+		priority = 1000,
 		config = function()
 			local dotenv_path = vim.fn.stdpath("config") .. "/.env"
 			vim.notify(dotenv_path)
 			vim.cmd("Dotenv " .. dotenv_path)
+			-- print(vim.env.CODEIUM == "true")
 		end,
 	},
 	{
@@ -202,6 +204,15 @@ return {
 			enable_on_load = true, -- will load your .env file upon loading a buffer
 			verbose = true, -- show error notification if .env file is not found and if .env is loaded
 			-- file_name = "~/.config/nvim/.env", -- will override the default file name '.env'
+		},
+	},
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000,
+		cond = false,
+		config = true,
+		opts = {
+			rocks = { "fzy", "pathlib.nvim ~> 1.0", "lua-dotenv" },
 		},
 	},
 }

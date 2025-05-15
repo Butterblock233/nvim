@@ -12,7 +12,7 @@ function M.setup()
 		{ name = "buffer" },
 		{ name = "path" },
 	}
-	if vim.env.CODEIUM then
+	if vim.env.CODEIUM == "true" then
 		do
 			table.insert(cmp_sources, { name = "codeium" })
 		end

@@ -1,22 +1,28 @@
 return {
 	{
-		"Exafunction/codeium.nvim",
+		"Exafunction/windsurf.nvim",
+		---@return boolean
 		cond = function()
-			return vim.env.CODEIUM ~= nil and vim.env.CODEIUM ~= ""
+			-- vim.print(vim.env.CODEIUM)
+			local enabled = vim.env.CODEIUM == "true"
+			vim.print("Codeium cond: " .. tostring(enabled))
+			return enabled
 		end,
+		priority = 42,
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- 必要依赖
-			"hrsh7th/nvim-cmp", -- cmp 集成
-			"ellisonleao/dotenv.nvim", -- 加载 .env 文件
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
 		},
-		lazy = true,
-		event = "InsertEnter", -- 按需加载
+		config = function(opts)
+			require("codeium").setup(opts)
+		end,
+		event = "InsertEnter",
 		opts = {},
 	},
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-        cond = true,
+		cond = true,
 		version = false, -- 永远不要将此值设置为 "*"！永远不要！
 		opts = {
 			-- 在此处添加任何选项
@@ -28,7 +34,7 @@ return {
 					timeout = 30000, -- 超时时间（毫秒），增加此值以适应推理模型
 					temperature = 0,
 					max_tokens = 8192, -- 增加此值以包括推理模型的推理令牌
-                    api_key_name = vim.env.OPENAI_API_KEY,
+					api_key_name = vim.env.OPENAI_API_KEY,
 					--reasoning_effort = "medium", -- low|medium|high，仅用于推理模型
 				},
 				deepseek = {
