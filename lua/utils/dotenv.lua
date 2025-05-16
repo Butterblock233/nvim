@@ -54,11 +54,20 @@ local function parseEnv(content)
 end
 
 -- Define a function to load the environment variables from a .env file into the _G table
-function dotenv:load(filename)
+function dotenv:load(filename, path)
 	-- Use .env as the default filename if not provided
 	filename = filename or ".env"
+	-- Use the current directory as the default path if not provided
+	path = path or vim.fn.stdpath('config')
+	-- 判断 filename 是否为绝对路径
+	local full_path
+	if filename:sub(1,1) == "/" then
+		full_path = filename
+	else
+		full_path = path .. "/" .. filename
+	end
 	-- Read the file content
-	local content, err = readFile(filename)
+	local content, err = readFile(full_path)
 	-- Check if there was an error
 	if not content then
 		-- Return nil and the error message
