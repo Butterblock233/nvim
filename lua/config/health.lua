@@ -1,6 +1,5 @@
 local health = vim.health
 
-
 local M = {}
 
 function M.check()
@@ -15,6 +14,9 @@ function M.check()
 		"SHELL",
 		"PROF",
 		"DEEPSEEK_API_KEY",
+		"OBSIDIAN",
+		"OBSIDIAN_PATH",
+		"DEBUG"
 	}
 
 	for _, var in ipairs(env_vars) do

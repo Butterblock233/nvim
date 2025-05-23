@@ -8,6 +8,7 @@ return {
 	--LSP三件套
 	{
 		"mason-org/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallALl", "MasonUpdate", "MasonLog" },
 		-- tag = "v1.11.0",
 		build = ":MasonUpdate",
 		opts = {

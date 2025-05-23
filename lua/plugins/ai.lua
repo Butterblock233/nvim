@@ -5,10 +5,12 @@ return {
 		cond = function()
 			-- vim.print(vim.env.CODEIUM)
 			local enabled = vim.env.CODEIUM == "true"
-			vim.print("Codeium cond: " .. tostring(enabled))
+			if vim.env.DEBUG == "true" then
+				vim.print("Codeium cond: " .. tostring(enabled))
+			end
 			return enabled
 		end,
-		priority = 42,
+		-- priority = 42,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
