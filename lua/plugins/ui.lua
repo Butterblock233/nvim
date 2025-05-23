@@ -1,5 +1,5 @@
 require("project").setup({
-	use_default = true
+	use_default = true,
 })
 return {
 	-- using lazy.nvim
@@ -30,17 +30,17 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",              desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>",   desc = "Delete non-pinned buffers" },
-			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",            desc = "Delete other buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",             desc = "Delete buffers to the right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",              desc = "Delete buffers to the left" },
-			{ "<leader>bc", "<Cmd>bw<CR>",                               desc = "Delete current buffer" },
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+			{ "<leader>bc", "<Cmd>bw<CR>", desc = "Delete current buffer" },
 			{ "<leader>ba", "<Cmd>BufferLineCloseOthers<CR><cmd>bw<CR>", desc = "Delete all buffers" },
-			{ "<C-S-Tab>",  "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
-			{ "<C-Tab>",    "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
-			{ "[b",         "<cmd>BufferLineCyclePrev<cr>",              desc = "Prev buffer" },
-			{ "]b",         "<cmd>BufferLineCycleNext<cr>",              desc = "Next buffer" },
+			{ "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+			{ "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+			{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+			{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
 		},
 	},
 	{
@@ -57,13 +57,8 @@ return {
 				vim.o.laststatus = 0
 			end
 		end,
-		config = function()
-			require("lualine").setup({})
-		end,
 		opts = require("config.colorshemes.lualine").opts,
 	},
-	--[[ lualine_a = { "mode" },
-    lualine_b = { "branch" }, ]]
 	{
 		"equalsraf/neovim-gui-shim",
 		-- lazy = true,

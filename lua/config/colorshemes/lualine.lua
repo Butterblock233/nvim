@@ -1,8 +1,29 @@
 local M = {}
+local colors = {
+	violet = "#B388FF",
+}
 
+local mode_color_map = {
+	t = colors.violet,
+}
+local function set_mode_colour()
+	local current_mode = vim.fn.mode()
+	local color = mode_color_map[current_mode]
+	if color then
+		return { bg = color }
+	end
+end
 M.opts = {
+	options = {
+		-- theme = "gruvbox"
+		theme = "auto",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = {
+			{ "mode", color = set_mode_colour, separator = { right = "" } },
+		},
 		lualine_b = {
 			"branch",
 			"diff",
