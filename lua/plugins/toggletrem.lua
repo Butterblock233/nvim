@@ -4,10 +4,11 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		module = "Terminal",
+		cond = false,
 		opts = {
 			close_on_exit = true,
 			open_mapping = [[<c-\>]],
-			shell = "pwsh -nologo",
+			shell = vim.env.SHELL,
 			direction = "float",
 			execs = {
 				{ nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
