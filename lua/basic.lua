@@ -53,14 +53,6 @@ vim.opt.mouse = "a"
 
 -- session options
 vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
-
--- vim.cmd([[cnoremap wqa wa | qa]])
---
---
--- vim.o.guifont = "Monospace:h14"
---
---
-
 --自动换行设置
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
@@ -69,18 +61,67 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Neovim clipboard config
-vim.opt.clipboard = "unnamedplus" -- use system clipboard
-if vim.fn.has("wsl") then
-	vim.g.clipboard = {
-		name = "win32yank",
-		copy = {
-			["+"] = "win32yank.exe -i --crlf",
-			["*"] = "win32yank.exe -i --crlf",
-		},
-		paste = {
-			["+"] = "win32yank.exe -o --lf",
-			["*"] = "win32yank.exe -o --lf",
-		},
-	}
+-- Neovim clipboar config
+vim.opt.clipboard = "unnamedplus"
+
+if vim.fn.has("unix") == 1 then
+	local clipboard_config = {}
+
+	if vim.fn.executable("wl-copy") == 1 and os.getenv("WAYLAND_DISPLAY") then
+		-- Linux + Wayland
+		clipboard_config = {
+			name = "wl-clipboard",
+			copy = {
+				["+"] = "wl-copy",
+				["*"] = "wl-copy --primary",
+			},
+			paste = {
+				["+"] = "wl-paste",
+				["*"] = "wl-paste --primary",
+			},
+		}
+	elseif vim.fn.executable("xclip") == 1 then
+		-- Linux + X11
+		clipboard_config = {
+			name = "xclip",
+			copy = {
+				["+"] = "xclip -selection clipboard",
+				["*"] = "xclip -selection primary",
+			},
+			paste = {
+				["+"] = "xclip -selection clipboard -o",
+				["*"] = "xclip -selection primary -o",
+			},
+		}
+	elseif vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") == 1 then
+		-- WSL
+		clipboard_config = {
+			name = "win32yank-wsl",
+			copy = {
+				["+"] = "win32yank.exe -i --crlf",
+				["*"] = "win32yank.exe -i --crlf",
+			},
+			paste = {
+				["+"] = "win32yank.exe -o --lf",
+				["*"] = "win32yank.exe -o --lf",
+			},
+		}
+	elseif vim.fn.has("mac") == 1 then
+		-- macOS
+		clipboard_config = {
+			name = "pbcopy/pbpaste",
+			copy = {
+				["+"] = "pbcopy",
+				["*"] = "pbcopy",
+			},
+			paste = {
+				["+"] = "pbpaste",
+				["*"] = "pbpaste",
+			},
+		}
+	end
+
+	if next(clipboard_config) ~= nil then
+		vim.g.clipboard = clipboard_config
+	end
 end
