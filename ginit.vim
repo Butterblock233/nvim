@@ -1,11 +1,10 @@
-let gui_font = DotenvGet('NVIM_GUI_FONT')
 " Enable Mouse
 set mouse=a
 
 " 检查 GuiFont 命令是否存在
 if exists(':GuiFont')
     " 获取 .env 文件中的字体配置
-    let gui_font = DotenvGet('NVIM_GUI_FONT')
+    let gui_font = $NVIM_GUI_FONT
     
     " 确保字体配置不为空
     if !empty(gui_font)
