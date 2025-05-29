@@ -215,4 +215,5 @@ return {
 			rocks = { "fzy", "pathlib.nvim ~> 1.0", "lua-dotenv" },
 		},
 	},
+	{ "wakatime/vim-wakatime", lazy = false, event = "BufEnter" },
 }
