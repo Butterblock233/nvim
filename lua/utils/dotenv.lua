@@ -53,8 +53,10 @@ local function parseEnv(content)
 	return pairs
 end
 
--- Define a function to load the environment variables from a .env file into the _G table
-function dotenv:load(filename, path)
+--- Define a function to load the environment variables from a .env file into the _G table
+---@param filename string
+---@param path string | nil
+function dotenv.load(filename, path)
 	-- Use .env as the default filename if not provided
 	filename = filename or ".env"
 	-- Use the current directory as the default path if not provided
