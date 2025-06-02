@@ -34,14 +34,14 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "BufReadPost", -- Load lspconfig, mason, mason-lspconfig
 		dependencies = {
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			-- { "williamboman/mason.nvim" },
+			-- { "williamboman/mason-lspconfig.nvim" },
 			{ "VidocqH/lsp-lens.nvim", priprity = 25 },
 			{ "nvimdev/lspsaga.nvim" },
 		},
 		config = function()
-			lspconfig.setup()
 			mason.setup()
+			lspconfig.setup()
 		end,
 		keys = lspconfig.keys,
 	},

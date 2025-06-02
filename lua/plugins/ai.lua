@@ -24,7 +24,7 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		cond = true,
+		cond = false,
 		version = false, -- 永远不要将此值设置为 "*"！永远不要！
 		opts = {
 			-- 在此处添加任何选项
