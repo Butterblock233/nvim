@@ -1,4 +1,3 @@
-require("project").setup()
 local lspsaga = require("config.lsp.utils.lspsaga")
 local lspconfig = require("config.lsp.utils.lspconfig")
 local mason = require("config.lsp.utils.mason")

@@ -1,13 +1,10 @@
-require("project").setup({
-	use_default = true,
-})
 return {
 	{
 		"mfussenegger/nvim-dap",
 		recommended = true,
 		desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
-		-- event = "VeryLazy",
-		event = "User ProjectEnter:*",
+		event = "VeryLazy",
+		-- event = "User ProjectEnter *",
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			-- virtual text for the debugger

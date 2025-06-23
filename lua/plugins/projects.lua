@@ -1,7 +1,3 @@
-require("project").setup({
-	use_defaults = true,
-	flags = { "pyproject.toml" }, -- Additional flags
-})
 return {
 	{
 		"goolord/alpha-nvim",
@@ -16,7 +12,7 @@ return {
 		"Mythos-404/xmake.nvim",
 		version = "^3",
 		lazy = true,
-		event = "User ProjectEnter:xmake.lua",
+		event = "User ProjectEnter xmake.lua",
 		ft = "lua",
 		dependencies = {
 			{
@@ -46,7 +42,7 @@ return {
 	},
 	{
 		"Civitasv/cmake-tools.nvim",
-		event = "User ProjectEnter:CmakeLists.txt",
+		event = "User ProjectEnter CmakeLists.txt",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
@@ -86,7 +82,7 @@ return {
 			{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
 		lazy = true,
-		event = "User ProjectEnter:.venv",
+		event = "User ProjectEnter .venv",
 		ft = "python",
 		branch = "regexp", -- This is the regexp branch, use this for the new version
 		keys = {
@@ -98,8 +94,16 @@ return {
 	},
 	{
 		"benomahony/uv.nvim",
-		cond = false,
-		event = "User ProjectEnter:pyproject.toml",
+		cond = true,
+		event = "User ProjectEnter pyproject.toml",
 		-- opts = {},
+	},
+
+	{
+		"Butterblock233/project-enter.nvim",
+		event = "VeryLazy",
+		-- 如果在本地开发，请取消注释下面两行
+		-- dev = true,
+		-- dir = "~/src/Projects/project-enter.nvim",
 	},
 }
