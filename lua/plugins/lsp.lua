@@ -31,7 +31,8 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = "BufReadPost", -- Load lspconfig, mason, mason-lspconfig
+		-- Do not set event as "BufReadPost", it will break filetype detection at the first time when neovim starts
+		event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
 		dependencies = {
 			-- { "williamboman/mason.nvim" },
 			-- { "williamboman/mason-lspconfig.nvim" },
