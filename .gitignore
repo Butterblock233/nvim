@@ -1,13 +1,9 @@
-lazy-lock.json
 coc-settings.json
 draft.txt
 .vscode/*
-lazy-lock.json
 test.lua
 lsp.lua.bak
-ginit.vim
 draft.lua
 tmp/
-ginit.vim
 *.bak
 .env
