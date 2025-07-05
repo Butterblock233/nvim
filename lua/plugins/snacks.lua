@@ -1,3 +1,15 @@
+---@return string
+local function get_shell()
+	if vim.o.shell == "pwsh" then
+		local cmd = "pwsh" .. " -NoLogo -ExecutionPolicy RemoteSigned"
+		return cmd
+	elseif vim.o.shell == "powershell" then
+		local cmd = "powershell" .. " -NoLogo -ExecutionPolicy RemoteSigned"
+		return cmd
+	else
+		return vim.o.shell
+	end
+end
 return {
 	{
 		"folke/snacks.nvim",
@@ -37,7 +49,10 @@ return {
 			{
 				"<leader>tt",
 				function()
-					require("snacks").terminal.toggle()
+					local cmd = get_shell()
+					require("snacks").terminal.toggle(cmd, {
+						win = { position = "bottom" },
+					})
 				end,
 				desc = "Toggle Terminal",
 			},
