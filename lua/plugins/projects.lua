@@ -1,3 +1,9 @@
+local pixi_command_string
+if vim.fn.has("win32") == 1 then
+	pixi_command_string = "fd python/.exe$ ./.pixi/envs --max-depth 2 --full-path --color never -a -L" -- for Windows platform
+else
+	pixi_command_string = "fd /bin/python$ ./.pixi/envs --max-depth 2 --full-path --color never -a -L"
+end
 return {
 	{
 		"goolord/alpha-nvim",
@@ -90,6 +96,15 @@ return {
 		},
 		opts = {
 			-- Your settings go here
+			settings = {
+				search = {
+					pixi_venvs = {
+						-- 只在 .pixi\envs\*\ 这一层找 python.exe
+						-- command = [[fd "python\.exe$" .\.pixi\envs --max-depth 2 --full-path --color never]],
+						command = pixi_command_string,
+					},
+				},
+			},
 		},
 	},
 	{
