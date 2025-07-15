@@ -1,8 +1,8 @@
 local pixi_command_string
 if vim.fn.has("win32") == 1 then
-	pixi_command_string = "fd python/.exe$ ./.pixi/envs --max-depth 2 --full-path --color never -a -L" -- for Windows platform
+	pixi_command_string = "fd ^python.exe$ ./.pixi/envs/ -I  --max-depth 3 -a -L" -- for Windows platform
 else
-	pixi_command_string = "fd /bin/python$ ./.pixi/envs --max-depth 2 --full-path --color never -a -L"
+	pixi_command_string = "fd ^python$ ./.pixi/envs/ -I  --max-depth 3 -a -L"
 end
 return {
 	{
