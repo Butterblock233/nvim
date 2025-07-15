@@ -4,6 +4,7 @@ return {
 	cmd = { "basedpyright-langserver", "--stdio" },
 	-- Filetypes to automatically attach to.
 	filetypes = { "python" },
+	root_markers = { ".git", "pyproject.toml", "pixi.toml", "uv.toml", "uv.lock", "pixi.lock" },
 	settings = {
 		basedpyright = {
 			analysis = {
