@@ -1,4 +1,4 @@
 return {
 	cmd = "pyright",
-	filetype = {"python"}
+	filetypes = {"python"}
 }
