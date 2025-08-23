@@ -1,5 +1,25 @@
 local M = {}
 
+--- Get relative path from current working directory
+--- @param path string
+--- @return string
+function M.get_relative_path(path)
+	local cwd = vim.fn.getcwd()
+	-- Normalize path separators for cross-platform compatibility
+	local normalized_cwd = vim.fn.substitute(cwd, '\\', '/', 'g')
+	local normalized_path = vim.fn.substitute(path, '\\', '/', 'g')
+	
+	if vim.startswith(normalized_path, normalized_cwd) then
+		local relative_path = vim.fn.substitute(normalized_path, '^' .. vim.fn.escape(normalized_cwd, '\\') .. '/\\?', '', '')
+		-- Use backslash on Windows, forward slash on Unix
+		if vim.fn.has('win32') == 1 then
+			return vim.fn.substitute(relative_path, '/', '\\', 'g')
+		end
+		return relative_path
+	end
+	return path
+end
+
 --- Get visual selection text using system yank
 --- @return string
 --- The selected text, or empty string if not in visual mode
@@ -22,7 +42,9 @@ function M.format_and_copy_selection(selected_text)
 	end
 
 	local bufname = vim.fn.bufname()
-	local filename = vim.fn.fnamemodify(bufname, ":t")
+	-- Get full path and convert to relative path
+	local full_path = vim.fn.fnamemodify(bufname, ":p")
+	local filename = M.get_relative_path(full_path)
 	local start_pos = vim.fn.getpos("'<")
 	local end_pos = vim.fn.getpos("'>")
 
@@ -53,7 +75,9 @@ function M.copy_with_content()
 	end
 
 	local bufname = vim.fn.bufname()
-	local filename = vim.fn.fnamemodify(bufname, ":t")
+	-- Get full path and convert to relative path
+	local full_path = vim.fn.fnamemodify(bufname, ":p")
+	local filename = M.get_relative_path(full_path)
 	local start_pos = vim.fn.getpos("'<")
 	local end_pos = vim.fn.getpos("'>")
 
