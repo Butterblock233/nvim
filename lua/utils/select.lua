@@ -1,0 +1,70 @@
+local M = {}
+
+--- Get visual selection text using system yank
+--- @return string
+--- The selected text, or empty string if not in visual mode
+function M.get_visual_selection()
+	-- Yank selection to temporary register a
+	vim.cmd('normal! "ay')
+
+	-- Get the yanked text
+	return vim.fn.getreg("a")
+end
+
+--- Format selection with file context and copy to clipboard
+--- @param selected_text string
+--- @return string
+--- Formatted text in "@filename start-end\nselected_text" format
+function M.format_and_copy_selection(selected_text)
+	if selected_text == "" then
+		vim.notify("No visual selection found", vim.log.levels.WARN)
+		return ""
+	end
+
+	local bufname = vim.fn.bufname()
+	local filename = vim.fn.fnamemodify(bufname, ":t")
+	local start_pos = vim.fn.getpos("'<")
+	local end_pos = vim.fn.getpos("'>")
+
+	local formatted_text = string.format("@%s %d-%d\n%s", filename, start_pos[2], end_pos[2], selected_text)
+
+	-- Copy to clipboard
+	vim.fn.setreg("+", formatted_text)
+	vim.fn.setreg("*", formatted_text)
+	vim.notify("Selection copied to clipboard", vim.log.levels.INFO)
+
+	return formatted_text
+end
+
+--- Convert visual selection to AI-readable format with file context and copy to clipboard
+--- Formatted text in 
+--- 
+--- "@filename start-end
+--- selected_text"
+---
+--- format and copy to clipboard
+function M.copy_with_content()
+	-- Get the yanked text
+	local selected_text = M.get_visual_selection()
+
+	if selected_text == "" then
+		vim.notify("No visual selection found", vim.log.levels.WARN)
+		return ""
+	end
+
+	local bufname = vim.fn.bufname()
+	local filename = vim.fn.fnamemodify(bufname, ":t")
+	local start_pos = vim.fn.getpos("'<")
+	local end_pos = vim.fn.getpos("'>")
+
+	local formatted_text = string.format("@%s %d-%d\n%s", filename, start_pos[2], end_pos[2], selected_text)
+
+	-- Copy to clipboard
+	vim.fn.setreg("+", formatted_text)
+	vim.fn.setreg("*", formatted_text)
+	vim.notify("Selection copied to clipboard", vim.log.levels.INFO)
+
+end
+
+return M
+
