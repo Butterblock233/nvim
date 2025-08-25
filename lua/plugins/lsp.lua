@@ -12,27 +12,38 @@ return {
 		build = ":MasonUpdate",
 		opts = {
 			-- 自动启用安装的服务器
-			automatic_installation = true,
+			-- automatic_installation = true,
 			-- 自动启用的服务器配置
+			ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" },
 			automatic_enable = {
 				-- 排除手动管理的常用服务器
-				exclude = { "lua_ls", "basedpyright", "powershell_es", "clangd" },
+				exclude = { "lua_ls", "basedpyright", "powershell_es", "clangd", "ruff" },
 			},
 		},
 		lazy = true,
 		cond = true,
 	},
+
 	{
 		"mason-org/mason-lspconfig.nvim",
-		-- tag = "v1.11.0",
-		opts = {},
-		lazy = true,
-		cond = true,
+		cmd = { "LspInstall", "LspUninstall" }, -- 仅在你需要安装/卸载时调用
+		opts = {
+			ensure_installed = {}, -- 关闭开机扫描
+			automatic_enable = false,
+		},
 	},
+	-- {
+	-- 	"mason-org/mason-lspconfig.nvim",
+	-- 	-- tag = "v1.11.0",
+	-- 	opts = {},
+	-- 	lazy = true,
+	-- 	cond = true,
+	-- },
 	{
 		"neovim/nvim-lspconfig",
 		-- Do not set event as "BufReadPost", it will break filetype detection at the first time when neovim starts
-		event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
+		-- event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- { "williamboman/mason.nvim" },
 			-- { "williamboman/mason-lspconfig.nvim" },
@@ -47,7 +58,7 @@ return {
 	},
 	{
 		"ray-x/lsp_signature.nvim",
-		cond = true,
+		cond = false,
 		event = "InsertEnter",
 		opts = conf.opts,
 		keys = conf.keys,
@@ -59,6 +70,7 @@ return {
 	{
 		"VidocqH/lsp-lens.nvim",
 		lazy = true,
+		cond = false,
 		priprity = 50,
 		-- event = "BufReadPost",
 		opts = {
