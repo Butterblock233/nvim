@@ -14,11 +14,11 @@ return {
 			-- 自动启用安装的服务器
 			-- automatic_installation = true,
 			-- 自动启用的服务器配置
-			ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" },
-			automatic_enable = {
-				-- 排除手动管理的常用服务器
-				exclude = { "lua_ls", "basedpyright", "powershell_es", "clangd", "ruff" },
-			},
+			-- ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" ,"ast_grep"},
+			-- automatic_enable = {
+			-- 	-- 排除手动管理的常用服务器
+			-- 	exclude = { "lua_ls", "basedpyright", "powershell_es", "clangd", "ruff" },
+			-- },
 		},
 		lazy = true,
 		cond = true,
@@ -26,10 +26,25 @@ return {
 
 	{
 		"mason-org/mason-lspconfig.nvim",
+		dependencies = { "mason-org/mason.nvim" },
+		-- event = {"VeryLazy"},
+		build = function()
+			vim.cmd("MasonUpdate")
+			vim.cmd({ cmd = "MasonInstall", args = mason.ensure_installed_server })
+		end,
 		cmd = { "LspInstall", "LspUninstall" }, -- 仅在你需要安装/卸载时调用
 		opts = {
-			ensure_installed = {}, -- 关闭开机扫描
-			automatic_enable = false,
+			-- ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" ,"ast_grep"}, -- 关闭开机扫描
+			-- automatic_enable = true, -- 注释以避免启动时5秒延迟
+			automatic_enable = {
+				exclude = {
+					"lua_ls",
+					"basedpyright",
+					"powershell_es",
+					"ruff",
+					"clangd",
+				},
+			}, -- 禁用自动启用，优化启动性能
 		},
 	},
 	-- {
@@ -43,7 +58,7 @@ return {
 		"neovim/nvim-lspconfig",
 		-- Do not set event as "BufReadPost", it will break filetype detection at the first time when neovim starts
 		-- event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 		dependencies = {
 			-- { "williamboman/mason.nvim" },
 			-- { "williamboman/mason-lspconfig.nvim" },
