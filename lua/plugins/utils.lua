@@ -35,12 +35,19 @@ return {
 		-- Desc:automatically pair patterns like '"' '{' '['
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = true,
 		-- Use opts = {} for passing setup options
 		-- this is equivalent to setup({}) function
 	},
 	{
+		"windwp/nvim-ts-autotag",
+		opts = {},
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
+	{
 		"NMAC427/guess-indent.nvim",
+		cond = false,
 		event = "InsertEnter",
 		opts = {},
 	},
@@ -215,5 +222,25 @@ return {
 			rocks = { "fzy", "pathlib.nvim ~> 1.0", "lua-dotenv" },
 		},
 	},
-	{ "wakatime/vim-wakatime", lazy = false, event = "BufEnter" },
+	{ "wakatime/vim-wakatime", cond = vim.env.WAKATIME == "true", event = "BufEnter" },
+	{
+		"folke/noice.nvim",
+		cond = false,
+		requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+		opts = {
+			{
+				lsp = {
+					-- 覆盖markdown渲染，使cmp和其他插件使用Treesitter
+					override = {
+						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+						["vim.lsp.util.stylize_markdown"] = true,
+						["cmp.entry.get_documentation"] = true,
+					},
+				},
+				presets = {
+					lsp_doc_border = true, -- 为悬浮文档添加边框
+				},
+			},
+		},
+	},
 }
