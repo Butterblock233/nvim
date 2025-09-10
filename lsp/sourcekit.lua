@@ -1,7 +1,7 @@
 return {
 	-- name = "Sourcekit",
 	cmd = { "sourcekit-lsp" },
-	filetypes = { "swift" },
+	filetypes = { "swift", "cpp" },
 	offsetEncoding = { "utf-8" },
 	root_markers = { ".git", "Package.swift" },
 }

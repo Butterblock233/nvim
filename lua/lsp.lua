@@ -16,5 +16,7 @@ vim.lsp.enable({
 	"gopls",
 	"sourcekit",
 	"basedpyright",
-	"nu"
+	"cue",
+	"nu",
+	-- "ty"
 })
