@@ -1,7 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
+	-- build = function()
+	-- 	require("nvim-treesitter.install").update({ with_sync = true })()
+	-- end,
 	tags = "0.8.5.2",
+	build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		ensure_installed = { "c", "python", "lua", "vim", "vimdoc", "javascript", "html", "nu" },
