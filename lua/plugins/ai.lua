@@ -22,16 +22,38 @@ return {
 		opts = {},
 	},
 	{
-		"greggh/claude-code.nvim",
+		"Butterblock233/CLIAgents.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required for git operations
 		},
 		keys = {
-			{ "<leader>cc", "<cmd>ClaudeCode<CR>", mode = { "t", "n" }, desc = "Toggle Claude Code" },
-			{ "<C-S-C>", "<cmd>ClaudeCode<CR>", mode = { "t", "n" }, desc = "Toggle Claude Code" },
-			{ "<A-c>", "<cmd>ClaudeCode<CR>", mode = { "t", "n" }, desc = "Toggle Claude Code" },
+			{ "<leader>cc", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<C-S-C>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<A-c>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
 		},
-		config = {
+		cmd = {
+			"CLIAgents",
+			"CLIAgentsResume"
+		},
+		opts = {
+			-- 新的多提供商配置
+			providers = {
+				default_provider = "claude", -- Default value
+				providers = {
+					gemini = {
+						command = "gemini",
+						default_variants = {
+							-- model = "--model=gemini-pro",
+						},
+					},
+					codex = {
+						command = "codex",
+						default_variants = {
+							model = "-m deepseek/deepseek-chat-v3.1"
+						}
+					}
+				},
+			},
 			shell = {
 				separator = ";",
 			},

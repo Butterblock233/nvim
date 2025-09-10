@@ -1,4 +1,5 @@
 {
+  "CLIAgents.nvim": { "branch": "main", "commit": "e069b85c89db46a26ed5aa30e6d5b09ac71b3006" },
   "LuaSnip": { "branch": "master", "commit": "458560534a73f7f8d7a11a146c801db00b081df0" },
   "alpha-nvim": { "branch": "main", "commit": "a35468cd72645dbd52c0624ceead5f301c566dff" },
   "arrow.nvim": { "branch": "master", "commit": "6e0f726f55f99332dd726a53effd6813786b6d49" },
