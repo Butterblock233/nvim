@@ -2,9 +2,16 @@ return {
 	{
 		-- 如果您有 lazy=true，请确保正确设置
 		"MeanderingProgrammer/render-markdown.nvim",
-		opts = {
-			file_types = { "markdown", "Avante" },
-		},
+		opts = (function()
+			local colors = require("config.colors")
+			return {
+				file_types = { "markdown", "Avante" },
+				heading = {
+					backgrounds = colors.headings.backgrounds,
+					foregrounds = colors.headings.foregrounds,
+				},
+			}
+		end)(),
 		ft = { "markdown", "Avante" },
 	},
 	{
