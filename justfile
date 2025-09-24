@@ -1,4 +1,4 @@
-set windows-shell := ["nu","-c"]
+set shell := ["nu","-c"]
 
 env:
 	nu ./env.nu
