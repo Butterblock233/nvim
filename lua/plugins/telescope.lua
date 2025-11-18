@@ -1,14 +1,11 @@
--- local builtin = require('telescope.builtin')
--- local keymaps = {
--- }
-
 -- plugins/telescope.lua:
 return {
 	"nvim-telescope/telescope.nvim",
 	-- event = "VeryLazy",
-    cmd = "Telescope",
-	tag = "0.1.8",
-	-- or                              , branch = '0.1.x',
+	cmd = "Telescope",
+	tag = "v0.1.9",
+	-- or:
+	-- branch = '0.1.x',
 	dependencies = { "nvim-lua/plenary.nvim" },
 	keys = {
 		{
@@ -38,6 +35,12 @@ return {
 				require("telescope.builtin").help_tags()
 			end,
 			desc = "Telescope help tags",
+		},
+		{
+			"<C-p>",
+			function()
+				require("telescope.builtin").find_files()
+			end,
 		},
 	},
 }
