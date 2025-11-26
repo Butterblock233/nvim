@@ -19,7 +19,6 @@ return {
 		version = "^3",
 		lazy = true,
 		event = "User ProjectEnter xmake.lua",
-		ft = "lua",
 		dependencies = {
 			{
 				"nvim-notify",
@@ -90,7 +89,7 @@ return {
 		lazy = true,
 		event = "User ProjectEnter .venv",
 		ft = "python",
-		branch = "regexp", -- This is the regexp branch, use this for the new version
+		-- branch = "regexp", -- This is the regexp branch, use this for the new version
 		keys = {
 			{ ",v", "<cmd>VenvSelect<cr>" },
 		},
