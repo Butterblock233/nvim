@@ -1,7 +1,7 @@
-local lspsaga = require("config.lsp.utils.lspsaga")
-local lspconfig = require("config.lsp.utils.lspconfig")
-local mason = require("config.lsp.utils.mason")
-local conf = require("config.lsp.utils.lsp_signature")
+local lspsaga = require("config.lsp.lspsaga")
+local lspconfig = require("config.lsp.lspconfig")
+local mason = require("config.lsp.mason")
+local conf = require("config.lsp.lsp_signature")
 
 return {
 	--LSP三件套
@@ -29,13 +29,12 @@ return {
 		dependencies = { "mason-org/mason.nvim" },
 		-- event = {"VeryLazy"},
 		build = function()
+			require("mason").setup()
 			vim.cmd("MasonUpdate")
 			vim.cmd({ cmd = "MasonInstall", args = mason.ensure_installed_server })
 		end,
-		cmd = { "LspInstall", "LspUninstall" }, -- 仅在你需要安装/卸载时调用
+		cmd = { "LspInstall", "LspUninstall" },
 		opts = {
-			-- ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" ,"ast_grep"}, -- 关闭开机扫描
-			-- automatic_enable = true, -- 注释以避免启动时5秒延迟
 			automatic_enable = {
 				exclude = {
 					"lua_ls",
@@ -43,20 +42,15 @@ return {
 					"powershell_es",
 					"ruff",
 					"clangd",
+					"sourcekit",
+					"nu"
 				},
-			}, -- 禁用自动启用，优化启动性能
+			},
 		},
 	},
-	-- {
-	-- 	"mason-org/mason-lspconfig.nvim",
-	-- 	-- tag = "v1.11.0",
-	-- 	opts = {},
-	-- 	lazy = true,
-	-- 	cond = true,
-	-- },
 	{
 		"neovim/nvim-lspconfig",
-		-- Do not set event as "BufReadPost", it will break filetype detection at the first time when neovim starts
+		-- Do not set event "BufReadPost", it will break filetype detection at the first time when neovim starts
 		-- event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
 		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 		dependencies = {
