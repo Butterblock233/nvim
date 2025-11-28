@@ -198,6 +198,7 @@ return {
 		end,
 	},
 	{
+		--- This plugin is deprecated, we're now using build-in dotenv module. see lua/utils/dotenv.lua for details.
 		"ellisonleao/dotenv.nvim",
 		cond = false,
 		-- init = function()
@@ -207,7 +208,7 @@ return {
 		-- 		file_name = ".env", -- will override the default file name '.env'
 		-- 	})
 		-- end,
-		config = {
+		opts = {
 			enable_on_load = true, -- will load your .env file upon loading a buffer
 			verbose = true, -- show error notification if .env file is not found and if .env is loaded
 			-- file_name = "~/.config/nvim/.env", -- will override the default file name '.env'

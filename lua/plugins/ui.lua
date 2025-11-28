@@ -8,7 +8,7 @@ return {
 		init = function()
 			require("bufferline").setup({})
 		end,
-		config = {
+		opts = {
 			options = {
 				hover = {
 					enabled = true,
@@ -63,7 +63,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "User ProjectEnter .git",
-		config = {
+		opts = {
 			signs = {
 				add = { text = "│" },
 				change = { text = "│" },
