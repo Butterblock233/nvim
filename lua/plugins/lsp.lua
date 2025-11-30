@@ -8,6 +8,10 @@ return {
 	{
 		"mason-org/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallALl", "MasonUpdate", "MasonLog" },
+		cond = function()
+			-- env: IS_NIXOS ==> Do Not Load
+			return not (vim.env.IS_NIXOS == "true")
+		end,
 		-- tag = "v1.11.0",
 		build = ":MasonUpdate",
 		opts = {
@@ -21,7 +25,6 @@ return {
 			-- },
 		},
 		lazy = true,
-		cond = true,
 	},
 
 	{
@@ -32,6 +35,10 @@ return {
 			require("mason").setup()
 			vim.cmd("MasonUpdate")
 			vim.cmd({ cmd = "MasonInstall", args = mason.ensure_installed_server })
+		end,
+		cond = function()
+			-- env: IS_NIXOS ==> Do Not Load
+			return not (vim.env.IS_NIXOS == "true")
 		end,
 		cmd = { "LspInstall", "LspUninstall" },
 		opts = {

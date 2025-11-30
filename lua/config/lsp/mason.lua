@@ -8,9 +8,9 @@ M.ensure_installed_server = { "lua-language-server", "basedpyright", "powershell
 -- end
 
 function M.setup()
-	-- 设置 mason
-	require("mason").setup()
-	require("mason-lspconfig").setup()
-	-- require("mason")
+	if not vim.env.IS_NIXOS == "true" then
+		require("mason").setup()
+		require("mason-lspconfig").setup()
+	end
 end
 return M
