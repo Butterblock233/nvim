@@ -2,6 +2,7 @@ local opts = {
 	noremap = true, -- non-recursive
 	silent = true, -- do not show message
 }
+local set = vim.keymap.set
 -- map = vim.keymap.set
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
@@ -71,3 +72,5 @@ end, { desc = "Toggle inlay_hint" })
 -- vim.keymap.set('c','','')
 
 vim.keymap.set("v", "<leader>y", require("utils.select").copy_with_content, { desc = "copy text with content" })
+
+set("n", "<leader>qqq", "<cmd>wqa<CR>", { desc = "Save and quit neovim" })
