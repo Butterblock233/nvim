@@ -70,4 +70,4 @@ end, { desc = "Toggle inlay_hint" })
 -- vim.keymap.set('c',"<CR>",'') --你小子害人不浅
 -- vim.keymap.set('c','','')
 
-vim.keymap.set("v", "<leader>y", require("utils.select").copy_with_content,{desc = "copy text with content"})
+vim.keymap.set("v", "<leader>y", require("utils.select").copy_with_content, { desc = "copy text with content" })
