@@ -13,7 +13,11 @@ return {
 			return not (vim.env.IS_NIXOS == "true")
 		end,
 		-- tag = "v1.11.0",
-		build = ":MasonUpdate",
+		-- build = ":MasonUpdate",
+		build = function()
+			require("mason").setup()
+			vim.cmd(":MasonUpdate")
+		end,
 		opts = {
 			-- 自动启用安装的服务器
 			-- automatic_installation = true,
