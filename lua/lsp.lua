@@ -18,5 +18,6 @@ vim.lsp.enable({
 	"basedpyright",
 	"cue",
 	"nu",
+	"nil"
 	-- "ty"
 })
