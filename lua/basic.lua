@@ -67,7 +67,21 @@ vim.opt.clipboard = "unnamedplus"
 if vim.fn.has("unix") == 1 then
 	local clipboard_config = {}
 
-	if vim.fn.executable("wl-copy") == 1 and os.getenv("WAYLAND_DISPLAY") then
+	-- order of unix: WSL > Linux+Wayland > Linux+X11 > macOS
+	if vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") == 1 then
+		-- WSL
+		clipboard_config = {
+			name = "win32yank-wsl",
+			copy = {
+				["+"] = "win32yank.exe -i --crlf",
+				["*"] = "win32yank.exe -i --crlf",
+			},
+			paste = {
+				["+"] = "win32yank.exe -o --lf",
+				["*"] = "win32yank.exe -o --lf",
+			},
+		}
+	elseif vim.fn.executable("wl-copy") == 1 and os.getenv("WAYLAND_DISPLAY") then
 		-- Linux + Wayland
 		clipboard_config = {
 			name = "wl-clipboard",
@@ -91,19 +105,6 @@ if vim.fn.has("unix") == 1 then
 			paste = {
 				["+"] = "xclip -selection clipboard -o",
 				["*"] = "xclip -selection primary -o",
-			},
-		}
-	elseif vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") == 1 then
-		-- WSL
-		clipboard_config = {
-			name = "win32yank-wsl",
-			copy = {
-				["+"] = "win32yank.exe -i --crlf",
-				["*"] = "win32yank.exe -i --crlf",
-			},
-			paste = {
-				["+"] = "win32yank.exe -o --lf",
-				["*"] = "win32yank.exe -o --lf",
 			},
 		}
 	elseif vim.fn.has("mac") == 1 then
