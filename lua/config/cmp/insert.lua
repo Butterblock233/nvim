@@ -19,9 +19,8 @@ function M.setup()
 	end
 
 	cmp.setup({
-
-		preselect = types.cmp.PreselectMode.Item,
 		--默认选择第一项
+		preselect = types.cmp.PreselectMode.Item,
 		completion = {
 			completeopt = "menu,menuone,noinsert",
 		},

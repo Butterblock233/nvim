@@ -33,7 +33,7 @@ return {
 		},
 		cmd = {
 			"CLIAgents",
-			"CLIAgentsResume"
+			"CLIAgentsResume",
 		},
 		opts = {
 			-- 新的多提供商配置
@@ -49,9 +49,9 @@ return {
 					codex = {
 						command = "codex",
 						default_variants = {
-							model = "-m deepseek/deepseek-chat-v3.1"
-						}
-					}
+							model = "-m deepseek/deepseek-chat-v3.1",
+						},
+					},
 				},
 			},
 			shell = {

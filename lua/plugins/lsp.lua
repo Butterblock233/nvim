@@ -52,9 +52,8 @@ return {
 					"basedpyright",
 					"powershell_es",
 					"ruff",
-					"clangd",
 					"sourcekit",
-					"nu"
+					"nu",
 				},
 			},
 		},
