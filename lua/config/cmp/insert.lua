@@ -61,12 +61,12 @@ function M.setup()
 			-- 取消
 			["<Esc>"] = cmp.mapping(function(fallback)
 				local suggestion = require("supermaven-nvim.completion_preview")
-				if suggestion.has_suggestion() then
-					-- clean suggestion first
-					suggestion:dispose_inlay()
-				elseif cmp.visible() then
+				if cmp.visible() then
 					-- cmp
 					cmp.abort()
+				elseif suggestion.has_suggestion() then
+					-- clean suggestion first
+					suggestion:dispose_inlay()
 				else
 					fallback()
 				end
@@ -75,19 +75,28 @@ function M.setup()
 			-- Accept currently selected item. If none selected, `select` first item.
 			-- Set `select` to `false` to only confirm explicitly selected items.
 			["<tab>"] = cmp.mapping(function(fallback)
-				local suggestion = require("supermaven-nvim.completion_preview")
-				local ls = require("luasnip")
-				-- cmp
-				if cmp.visible() then
-					cmp.confirm()
-				-- supermaven: AI completion
-				elseif suggestion.has_suggestion() then
-					suggestion.on_accept_suggestion()
-				-- luasnip snippets
-				elseif ls.expand_or_jumpable() then
-					ls.jump(1)
-				else
-					fallback()
+				if vim.env.SUPERMAVEN == "true" then
+					local suggestion = require("supermaven-nvim.completion_preview")
+					local ls = require("luasnip")
+					-- cmp
+					if cmp.visible() then
+						cmp.confirm()
+					-- supermaven: AI completion
+					elseif suggestion.has_suggestion() then
+						suggestion.on_accept_suggestion()
+					-- luasnip snippets
+					elseif ls.expand_or_jumpable() then
+						ls.jump(1)
+					else
+						fallback()
+					end
+				-- disable supermaven:
+				elseif vim.env.SUPERMAVEN == "false" then
+					if cmp.visible() then
+						cmp.confirm()
+					else
+						fallback()
+					end
 				end
 			end, { "i" }),
 			["<C-CR>"] = cmp.mapping(function()

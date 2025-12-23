@@ -167,12 +167,7 @@ return {
 			"SupermavenClearLog",
 		},
 		opts = {
-			keymaps = {
-				accept_suggestion = "<Tab>",
-				clear_suggestion = "<C-]>",
-				accept_word = "<C-j>",
-			},
-			disable_keymaps = true,
+			disable_keymaps = true, -- defined in cmp
 			disable_inline_completion = false,
 		},
 		config = function(opts)
