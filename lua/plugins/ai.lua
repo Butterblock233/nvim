@@ -153,7 +153,19 @@ return {
 	},
 	{
 		"supermaven-inc/supermaven-nvim",
-		cond = vim.env.SUPERMAVEN == "true",
+		cond = true,
+		event = { "InsertEnter" },
+		cmd = {
+			"SupermavenStart",
+			"SupermavenStop",
+			"SupermavenRestart",
+			"SupermavenToggle",
+			"SupermavenUseFreeVersion",
+			"SupermavenUsePro",
+			"SupermavenLogout",
+			"SupermavenShowLog",
+			"SupermavenClearLog",
+		},
 		opts = {
 			keymaps = {
 				accept_suggestion = "<Tab>",
@@ -163,5 +175,15 @@ return {
 			disable_keymaps = true,
 			disable_inline_completion = false,
 		},
+		config = function(opts)
+			if vim.env.SUPERMAVEN == "true" then
+				require("supermaven-nvim").setup(opts)
+			else
+				-- internal implementation of require("supermaven-nvim.api").stop(), which does not show any messages
+				vim.g.SUPERMAVEN_DISABLED = 1
+				require("supermaven-nvim.document_listener").teardown()
+				require("supermaven-nvim.binary.binary_handler"):stop_binary()
+			end
+		end,
 	},
 }
