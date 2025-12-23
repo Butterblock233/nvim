@@ -1,14 +1,13 @@
 # new env shell to convert .env.tmpl to .env
-# usage: env-new.nu
 
 def unwarp [$list] {
 	$list | to text 
 }
 # parse to nushell table, and ignore # comments
-let tmpl = open .env.tmpl | lines | where { not ($in | str contains "#") } | where { ($in | str trim) != "" } | split column "="| rename key value
-let dotenv = open .env | lines | str replace --regex '^#\s*' '' | lines | str trim | split column "=" | rename key value
-# print $tmpl
-# print $dotenv
+let tmpl = open .env.tmpl | lines |
+	where { not ($in | str contains "#") } | where { ($in | str trim) != "" } | split column "="| rename key value
+let dotenv = open .env | lines |
+	str replace --regex '^#\s*' '' | lines | str trim | split column "=" | rename key value
 
 # get the difference between the two dotent
 let diff = $tmpl | where { $in.key not-in $dotenv.key }
@@ -21,5 +20,3 @@ if not ($diff | is-empty ) {
 		print $"($result) saved"
 	}
 } else { print "There's nothing to do today" }
-
-# env.lagecy
