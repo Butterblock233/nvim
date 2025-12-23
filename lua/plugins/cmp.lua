@@ -42,23 +42,23 @@ return {
             history = true,
         },
         keys = {
-            {
-                "<Tab>",
-                function()
-                    local cmp = require("cmp")
-                    local ls = require("luasnip")
-                    if cmp.visible() then
-                        cmp.confirm()
-                    elseif ls.expand_or_jumpable() then
-                        ls.expand_or_jump()
-                    else
-                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
-                    end
-                end,
-                mode = { "i", "s" },
-                desc = "Super Tab: cmp confirm / luasnip jump / insert Tab",
-                silent = true,
-            },
+            -- {
+            --     "<Tab>",
+            --     function()
+            --         local cmp = require("cmp")
+            --         local ls = require("luasnip")
+            --         if cmp.visible() then
+            --             cmp.confirm()
+            --         elseif ls.expand_or_jumpable() then
+            --             ls.expand_or_jump()
+            --         else
+            --             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
+            --         end
+            --     end,
+            --     mode = { "i", "s" },
+            --     desc = "Super Tab: cmp confirm / luasnip jump / insert Tab",
+            --     silent = true,
+            -- },
             {
                 "<S-Tab>",
                 function()

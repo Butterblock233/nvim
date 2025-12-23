@@ -21,37 +21,34 @@ function M.setup()
 			cmp.complete() -- 强制触发补全，而非历史命令
 		end
 	end, { noremap = true, silent = true })
-	-- 定义补全映射
-	local mapping = {
-		-- Tab 键：确认选中项（若补全菜单可见），否则插入普通 Tab
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.confirm({ select = true }) -- 强制使用当前选中项
-			else
-				fallback() -- 普通 Tab 行为
-			end
-		end, { "i", "c" }),
-
-		-- Enter 键：补全公共前缀（类似 VS Code）
-		["<CR>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = false,
-				})
-				cmp.mapping.complete_common_string() -- 补全公共前缀
-			else
-				fallback() -- 普通 Enter 行为
-			end
-		end),
-	}
 
 	-- 配置 cmdline 补全
 	cmp.setup.cmdline(":", {
 		completion = {
 			completeopt = "menu,menuone,noinsert",
 		},
-		mapping = mapping,
+		mapping = {
+			["<Tab>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.confirm({ select = true })
+				else
+					fallback() -- 普通 Tab 行为
+				end
+			end, { "c" }),
+
+			-- Enter 键：补全公共前缀（类似 VS Code）
+			["<CR>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = false,
+					})
+					cmp.mapping.complete_common_string() -- 补全公共前缀
+				else
+					fallback() -- 普通 Enter 行为
+				end
+			end),
+		},
 		sources = cmp.config.sources({
 			{ name = "path" },
 			{

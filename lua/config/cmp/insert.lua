@@ -57,18 +57,43 @@ function M.setup()
 			["<C-n>"] = cmp.mapping.select_next_item(),
 			["<Down>"] = cmp.mapping.select_next_item(),
 			-- 出现补全
-			["<C-Space>"] = cmp.mapping.complete(),
+			["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+			["<C-e>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 			-- 取消
-			["<Esc>"] = cmp.mapping({
-				i = cmp.mapping.abort(),
-			}),
+			["<Esc>"] = cmp.mapping(function(fallback)
+				local suggestion = require("supermaven-nvim.completion_preview")
+				if suggestion.has_suggestion() then
+					-- clean suggestion first
+					suggestion:dispose_inlay()
+				elseif cmp.visible() then
+					-- cmp
+					cmp.abort()
+				else
+					fallback()
+				end
+			end, { "i" }),
 			-- 确认
 			-- Accept currently selected item. If none selected, `select` first item.
 			-- Set `select` to `false` to only confirm explicitly selected items.
-			["<tab>"] = cmp.mapping.confirm({
-				select = true,
-				behavior = cmp.ConfirmBehavior.Replace,
-			}),
+			["<tab>"] = cmp.mapping(function(fallback)
+				local suggestion = require("supermaven-nvim.completion_preview")
+				local ls = require("luasnip")
+				-- cmp
+				if cmp.visible() then
+					cmp.confirm()
+				-- supermaven: AI completion
+				elseif suggestion.has_suggestion() then
+					suggestion.on_accept_suggestion()
+				-- luasnip snippets
+				elseif ls.expand_or_jumpable() then
+					ls.jump(1)
+				else
+					fallback()
+				end
+			end, { "i" }),
+			["<C-CR>"] = cmp.mapping(function()
+				require("supermaven-nvim.completion_preview").on_accept_suggestion()
+			end),
 			-- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 			["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 			["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
