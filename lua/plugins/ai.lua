@@ -176,5 +176,11 @@ return {
 			disable_inline_completion = false,
 			confition = vim.env.SUPERMAVEN == "true", -- condition to check for stopping supermaven, supermaven will stop when the condition is true.
 		},
+		build = function (opts)
+			-- You dont want to see a pop-up windows to ask you
+			-- login to supermaven to use pro version every ten seconds or so, right?
+			local api = require("supermaven-nvim.api")
+			api.use_free_version()
+		end
 	},
 }
