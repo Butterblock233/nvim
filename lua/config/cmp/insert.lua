@@ -75,9 +75,9 @@ function M.setup()
 			-- Accept currently selected item. If none selected, `select` first item.
 			-- Set `select` to `false` to only confirm explicitly selected items.
 			["<tab>"] = cmp.mapping(function(fallback)
+				local suggestion = require("supermaven-nvim.completion_preview")
+				local ls = require("luasnip")
 				if vim.env.SUPERMAVEN == "true" then
-					local suggestion = require("supermaven-nvim.completion_preview")
-					local ls = require("luasnip")
 					-- cmp
 					if cmp.visible() then
 						cmp.confirm()
@@ -90,10 +90,12 @@ function M.setup()
 					else
 						fallback()
 					end
-				-- disable supermaven:
+				-- when supermaven disabled
 				elseif vim.env.SUPERMAVEN == "false" then
 					if cmp.visible() then
 						cmp.confirm()
+					elseif ls.expand_or_jumpable() then
+						ls.jump(1)
 					else
 						fallback()
 					end
