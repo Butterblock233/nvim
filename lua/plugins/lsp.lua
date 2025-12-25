@@ -18,16 +18,7 @@ return {
 			require("mason").setup()
 			vim.cmd(":MasonUpdate")
 		end,
-		opts = {
-			-- 自动启用安装的服务器
-			-- automatic_installation = true,
-			-- 自动启用的服务器配置
-			-- ensure_installed = { "lua_ls", "basedpyright", "powershell_es", "ruff", "clangd" ,"ast_grep"},
-			-- automatic_enable = {
-			-- 	-- 排除手动管理的常用服务器
-			-- 	exclude = { "lua_ls", "basedpyright", "powershell_es", "clangd", "ruff" },
-			-- },
-		},
+		opts = {},
 		lazy = true,
 	},
 

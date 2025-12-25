@@ -73,18 +73,18 @@ return {
                 desc = "Super Tab: luasnip jump back / insert S-Tab",
                 silent = true,
             },
-            {
-                "<C-e>",
-                function()
-                    local ls = require("luasnip")
-                    if ls.choice_active() then
-                        ls.change_choice(1)
-                    end
-                end,
-                mode = { "i", "s" },
-                desc = "LuaSnip jump back or jump to last active snippet",
-                silent = true,
-            },
+            -- {
+            --     "<C-e>",
+            --     function()
+            --         local ls = require("luasnip")
+            --         if ls.choice_active() then
+            --             ls.change_choice(1)
+            --         end
+            --     end,
+            --     mode = { "i", "s" },
+            --     desc = "LuaSnip jump back or jump to last active snippet",
+            --     silent = true,
+            -- },
         },
     },
 }
