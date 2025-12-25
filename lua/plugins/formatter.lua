@@ -12,6 +12,7 @@ return {
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			cpp = { "clang-format" },
 			nix = { "nixfmt" },
+			go = { "gofmt" },
 		},
 		formatters = {
 			ruff = {
