@@ -167,18 +167,14 @@ return {
 			"SupermavenClearLog",
 		},
 		opts = {
+			keymaps = {
+				accept_suggestion = "<Tab>",
+				clear_suggestion = "<C-]>",
+				accept_word = "",
+			},
 			disable_keymaps = true, -- defined in cmp
 			disable_inline_completion = false,
+			confition = vim.env.SUPERMAVEN == "true", -- condition to check for stopping supermaven, supermaven will stop when the condition is true.
 		},
-		config = function(opts)
-			if vim.env.SUPERMAVEN == "true" then
-				require("supermaven-nvim").setup(opts)
-			else
-				-- internal implementation of require("supermaven-nvim.api").stop(), which does not show any messages
-				vim.g.SUPERMAVEN_DISABLED = 1
-				require("supermaven-nvim.document_listener").teardown()
-				require("supermaven-nvim.binary.binary_handler"):stop_binary()
-			end
-		end,
 	},
 }

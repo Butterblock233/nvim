@@ -102,9 +102,16 @@ function M.setup()
 			["<C-CR>"] = cmp.mapping(function()
 				require("supermaven-nvim.completion_preview").on_accept_suggestion()
 			end),
+			["<C-k>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.mapping.scroll_docs(4)
+				else
+					fallback()
+				end
+			end, { "i" }),
 			-- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-			["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-			["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+			-- ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+			-- ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 			-- ['<C-j>'] = cmp.scroll_docs
 		},
 		sorting = {
