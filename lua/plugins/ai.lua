@@ -174,13 +174,19 @@ return {
 			},
 			disable_keymaps = true, -- defined in cmp
 			disable_inline_completion = false,
-			confition = vim.env.SUPERMAVEN == "true", -- condition to check for stopping supermaven, supermaven will stop when the condition is true.
 		},
-		build = function (opts)
+		build = function()
 			-- You dont want to see a pop-up windows to ask you
 			-- login to supermaven to use pro version every ten seconds or so, right?
 			local api = require("supermaven-nvim.api")
 			api.use_free_version()
-		end
+		end,
+		config = function(opts)
+			if vim.env.SUPERMAVEN == "false" then
+				vim.g.SUPERMAVEN_DISABLED = 1 -- use internal impletion directely to disable warnings
+			else
+				require("supermaven-nvim").setup(opts)
+			end
+		end,
 	},
 }
