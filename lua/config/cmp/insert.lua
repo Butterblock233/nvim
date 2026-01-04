@@ -5,6 +5,7 @@ function M.setup()
 	local lspkind = require("lspkind")
 	local types = require("cmp.types")
 	local compare = require("cmp.config.compare")
+	local suggestion = require("supermaven-nvim.completion_preview")
 
 	local cmp_sources = {
 		{ name = "nvim_lsp" },
@@ -60,7 +61,6 @@ function M.setup()
 			["<C-e>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 			-- 取消
 			["<Esc>"] = cmp.mapping(function(fallback)
-				local suggestion = require("supermaven-nvim.completion_preview")
 				if cmp.visible() then
 					-- cmp
 					cmp.abort()
@@ -75,7 +75,6 @@ function M.setup()
 			-- Accept currently selected item. If none selected, `select` first item.
 			-- Set `select` to `false` to only confirm explicitly selected items.
 			["<tab>"] = cmp.mapping(function(fallback)
-				local suggestion = require("supermaven-nvim.completion_preview")
 				local ls = require("luasnip")
 				if vim.env.SUPERMAVEN == "true" then
 					-- cmp
@@ -101,9 +100,7 @@ function M.setup()
 					end
 				end
 			end, { "i" }),
-			["<C-CR>"] = cmp.mapping(function()
-				require("supermaven-nvim.completion_preview").on_accept_suggestion()
-			end),
+			["<C-CR>"] = cmp.mapping(function() end),
 			["<C-k>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.mapping.scroll_docs(4)
@@ -112,7 +109,15 @@ function M.setup()
 				end
 			end, { "i" }),
 			-- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-			-- ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+			["<C-j>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.mapping.scroll_docs(-4)
+				elseif require("supermaven-nvim.api").is_running() then
+					vim.cmd("norm! j")
+				else
+					fallback()
+				end
+			end, { "i", "c" }),
 			-- ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 			-- ['<C-j>'] = cmp.scroll_docs
 		},
@@ -129,6 +134,11 @@ function M.setup()
 				-- compare.sort_text,
 				compare.length,
 				compare.order,
+			},
+		},
+		window = {
+			documentation = {
+				border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 			},
 		},
 	})
