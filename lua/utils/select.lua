@@ -1,6 +1,8 @@
 local M = {}
 
 --- Get relative path from current working directory
+--- input: let a = 1
+--- output: @main.swift 1-1 let a = 1
 --- @param path string
 --- @return string
 function M.get_relative_path(path)
