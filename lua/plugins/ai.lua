@@ -182,7 +182,7 @@ return {
 			api.use_free_version()
 		end,
 		config = function(opts)
-			if vim.env.SUPERMAVEN == "false" then
+			if vim.env.SUPERMAVEN == "false" or vim.env.SUPERMAVEN == nil then
 				vim.g.SUPERMAVEN_DISABLED = 1 -- use internal impletion directely to disable warnings
 			else
 				require("supermaven-nvim").setup(opts)

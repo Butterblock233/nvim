@@ -90,7 +90,7 @@ function M.setup()
 						fallback()
 					end
 				-- when supermaven disabled
-				elseif vim.env.SUPERMAVEN == "false" then
+				elseif vim.env.SUPERMAVEN == "false" or vim.env.SUPERMAVEN == nil then
 					if cmp.visible() then
 						cmp.confirm()
 					elseif ls.expand_or_jumpable() then
