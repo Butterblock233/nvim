@@ -10,7 +10,7 @@ if not ( ".env" | path exists) {
 
 # parse to nushell table, and ignore # comments
 let tmpl = open .env.tmpl | lines |
-        where { not ($in | str contains "#") } | where { ($in | str trim) != "" } | split column "="| rename key value
+        where { not ($in | str starts-with "#") } | where { ($in | str trim) != "" } | split column "="| rename key value
 let dotenv = open .env | lines |
         str replace --regex '^#\s*' '' | lines | str trim | split column "=" | rename key value
 
