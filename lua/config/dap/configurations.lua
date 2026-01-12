@@ -33,7 +33,7 @@ function M.setup()
 				end
 			end,
 		},
-	} -- 配置 C++ 调试会话
+	}
 	dap.configurations.cpp = {
 		{
 			name = "Launch C++ Program",
@@ -42,9 +42,9 @@ function M.setup()
 			program = function()
 				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/a.out", "file")
 			end,
-			cwd = "${workspaceFolder}", -- 调试时的工作目录
-			stopAtEntry = false, -- 不在入口处停止
-			args = {}, -- 启动时传递的命令行参数
+			cwd = "${workspaceFolder}",
+			stopAtEntry = false,
+			args = {},
 			setupCommands = {
 				{
 					description = "Enable pretty-printing for gdb",
@@ -52,7 +52,7 @@ function M.setup()
 					ignoreFailures = true,
 				},
 			},
-			miDebuggerPath = "gdb", -- 也可以设置为 gdb
+			miDebuggerPath = "gdb",
 		},
 	}
 	-- 	type = "cpp",

@@ -1,9 +1,9 @@
 -- 获取当前光标下的语法高亮组名称
 local function get_syntax_highlight_group()
-	local line = vim.fn.line(".") -- 获取当前行号
-	local col = vim.fn.col(".") -- 获取当前列号
-	local syn_id = vim.fn.synID(line, col, 1) -- 获取语法 ID
-	local syn_name = vim.fn.synIDattr(syn_id, "name") -- 获取语法高亮组名称
+	local line = vim.fn.line(".") -- line
+	local col = vim.fn.col(".") -- column
+	local syn_id = vim.fn.synID(line, col, 1)
+	local syn_name = vim.fn.synIDattr(syn_id, "name")
 	if syn_name then
 		return syn_name
 	else
@@ -11,38 +11,34 @@ local function get_syntax_highlight_group()
 	end
 end
 
--- 绑定快捷键 <leader>hh 来打印当前光标下的语法高亮组名称
 vim.keymap.set("n", "<leader>hh", function()
 	local syn_name = get_syntax_highlight_group()
-	-- 使用 vim.notify 输出（Neovim 0.5+）
 	vim.notify("Syntax highlight group: " .. syn_name)
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Print Syntax Highlight Group" })
 
--- 定义高亮组
 local highlights = {
-	-- 基础高亮组
-	-- Normal = { fg = "#D4D4D4", bg = "#1E1E1E" }, -- 正常文本
-	-- Comment = { fg = "#6A9955", italic = true }, -- 注释
+	-- Normal = { fg = "#D4D4D4", bg = "#1E1E1E" },
+	-- Comment = { fg = "#6A9955", italic = true },
 	Statement = { link = "Keyword" },
 
 	-- 语法高亮组
-	Keyword = { fg = "#569CD6", italic = true }, -- 关键字
-	Type = { fg = "#4EC9B0" }, -- 类型
-	Function = { fg = "#DCDCAA" }, -- 函数
-	-- String = { fg = "#CE9178" }, -- 字符串
-	Identifier = { fg = "#9cdcfe" }, -- 变量
-	Number = { fg = "#b5cea8" }, -- 数字
-	-- Operator = { fg = "#FABD2F" }, -- 运算符
+	Keyword = { fg = "#569CD6", italic = true },
+	Type = { fg = "#4EC9B0" },
+	Function = { fg = "#DCDCAA" },
+	-- String = { fg = "#CE9178" },
+	Identifier = { fg = "#9cdcfe" },
+	Number = { fg = "#b5cea8" },
+	-- Operator = { fg = "#FABD2F" },
 
 	-- Treesitter 高亮组
-	["@keyword"] = { link = "Keyword" }, -- 关键字
-	["@type"] = { link = "Type" }, -- 类型
-	["@function"] = { link = "Function" }, -- 函数
-	["@string"] = { link = "String" }, -- 字符串
-	["@variable"] = { link = "Identifier" }, -- 变量
-	["@number"] = { link = "Number" }, -- 数字
-	["@comment"] = { link = "Comment" }, -- 注释
-	["@operator"] = { link = "Operator" }, -- 运算符
+	["@keyword"] = { link = "Keyword" },
+	["@type"] = { link = "Type" },
+	["@function"] = { link = "Function" },
+	["@string"] = { link = "String" },
+	["@variable"] = { link = "Identifier" },
+	["@number"] = { link = "Number" },
+	["@comment"] = { link = "Comment" },
+	["@operator"] = { link = "Operator" },
 
 	-- Python
 	pythonFunction = { link = "Function" },
@@ -53,7 +49,7 @@ local highlights = {
 	pythonStatement = { link = "Keyword" },
 	pythonInclude = { link = "Keyword" },
 
-	-- Semshi 专用高亮组
+	-- Semshi: Python highlight plugin
 	semshiLocal = { link = "Identifier" },
 	semshiBuiltin = { link = "Type" },
 	semshiGlobal = { link = "Identifier" },
@@ -90,9 +86,3 @@ vim.keymap.set("n", "<C-F4>", function()
 end, { desc = "Reload Hightlight Group" })
 
 reload_highlight()
--- 自定义高亮优先级
--- vim.treesitter.query.set("python", "highlights", [[
---     (call
---         function: (identifier) @function.call
---         arguments: (argument_list)) @function.call (#set! priority 105)
--- ]])

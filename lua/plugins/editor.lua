@@ -53,7 +53,7 @@ return {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
-		cond = false, --disabled
+		cond = false,
 		version = "*",
 		lazy = true,
 		event = "VeryLazy",

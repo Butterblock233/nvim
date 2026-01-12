@@ -1,6 +1,6 @@
 return {
 	"https://codeberg.org/esensar/nvim-dev-container",
-	dependencies = { "nvim-treesitter/nvim-treesitter" }, -- 依赖插件
-	lazy = true, -- 标记为延迟加载
+	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	lazy = true,
 	event = "User ProjectEnter .devcontainer"
 }
