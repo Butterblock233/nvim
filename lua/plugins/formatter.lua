@@ -25,7 +25,9 @@ return {
 		{
 			"<leader>fc",
 			function()
-				require("conform").format()
+				require("conform").format({
+					lsp_format = "fallback",
+				})
 			end,
 			desc = "Format Code",
 		},
