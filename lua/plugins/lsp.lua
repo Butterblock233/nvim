@@ -38,6 +38,7 @@ return {
 		cmd = { "LspInstall", "LspUninstall" },
 		opts = {
 			automatic_enable = {
+				-- The following servers are manually configured
 				exclude = {
 					"lua_ls",
 					"basedpyright",
@@ -45,6 +46,7 @@ return {
 					"ruff",
 					"sourcekit",
 					"nu",
+					"ty",
 				},
 			},
 		},
@@ -61,7 +63,9 @@ return {
 			{ "nvimdev/lspsaga.nvim" },
 		},
 		config = function()
-			mason.setup()
+			-- mason.setup()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
 			lspconfig.setup()
 		end,
 		keys = lspconfig.keys,
