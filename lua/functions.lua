@@ -1,3 +1,5 @@
+--- functions.lua
+--- defines some functiosn
 vim.api.nvim_create_augroup("AutoReload", { clear = true })
 
 -- 当配置文件被修改时，重新加载

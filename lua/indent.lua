@@ -1,3 +1,8 @@
+--- indent.lua
+--- indent settings include toggle_indent and format_indent
+--- toggle_indent: toggle between Tabs and Spaces
+--- format_indent: format file indentation to match current settings (Tabs or Spaces)
+
 --- toggle indentation between Tabs and Spaces
 local function toggle_indent()
 	if vim.opt.expandtab:get() then
