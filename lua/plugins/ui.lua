@@ -198,6 +198,12 @@ return {
 					cterm_color = 74,
 					color = "#519aba",
 				},
+				dart = {
+					icon = "",
+					name = "Dart",
+					color = "#38bdf8",
+					cterm_color = 74,
+				},
 			},
 		},
 	},

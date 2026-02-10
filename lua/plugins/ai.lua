@@ -168,8 +168,8 @@ return {
 		},
 		opts = {
 			keymaps = {
-				accept_suggestion = "<Tab>",
-				clear_suggestion = "<C-]>",
+				accept_suggestion = "",
+				clear_suggestion = "",
 				accept_word = "",
 			},
 			disable_keymaps = true, -- defined in cmp

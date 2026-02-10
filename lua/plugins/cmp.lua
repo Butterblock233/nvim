@@ -1,7 +1,7 @@
 return {
     -- cmp --
     {
-        "Butterblock233/nvim-cmp",
+        "Himalian/nvim-cmp",
         cond = (vim.env.USE_BLINK ~= "true"),
 		-- for developers, uncomment following two lines
         -- dev = true,

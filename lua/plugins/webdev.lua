@@ -1,6 +1,7 @@
 return {
 	{
 		"ray-x/web-tools.nvim",
+		cond = false,
 		opts = {
 			keymaps = {
 				rename = nil, -- by default use same setup of lspconfig

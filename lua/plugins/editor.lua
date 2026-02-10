@@ -129,10 +129,21 @@ return {
 	{
 		"lervag/vimtex",
 		lazy = false, -- we don't want to lazy load VimTeX
+		cond = false,
 		-- tag = "v2.15", -- uncomment to pin to a specific release
 		init = function()
 			-- VimTeX configuration goes here, e.g.
 			vim.g.vimtex_view_method = "zathura"
 		end,
+	},
+	{
+		"nvim-flutter/flutter-tools.nvim",
+		lazy = true,
+		event = "User ProjectEnter pubspec.yaml",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim", -- optional for vim.ui.select
+		},
+		config = true,
 	},
 }
