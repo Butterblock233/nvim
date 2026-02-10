@@ -15,6 +15,21 @@ return {
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
+			-- setup treesitter_selection
+			vim.keymap.set("n", "<S-CR>", "") -- disable default <S-CR> mapping
+			-- require("incr").setup(opts)
+			vim.keymap.set(
+				{ "n", "x" },
+				"<CR>",
+				require("utils").ts_selection.increment_selection,
+				{ desc = "Increment selection" }
+			)
+			vim.keymap.set(
+				"x",
+				"<S-CR>",
+				require("utils").ts_selection.decrement_selection,
+				{ desc = "Decrement selection" }
+			)
 			--- @class ParserConfig
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
@@ -35,24 +50,7 @@ return {
 			incr_key = "<CR>", -- increment selection key
 			decr_key = "<S-CR>", -- decrement selection key
 		},
-		config = function(_, opts)
-			vim.keymap.set("n", "<S-CR>", "") -- disable default <S-CR> mapping
-			-- require("incr").setup(opts)
-			vim.keymap.set(
-				{ "n", "x" },
-				"<CR>",
-				require("utils").ts_selection.increment_selection,
-				{ desc = "Increment selection" }
-			)
-			vim.keymap.set(
-				"x",
-				"<S-CR>",
-				require("utils").ts_selection.decrement_selection,
-				{ desc = "Decrement selection" }
-			)
-		end,
+		cond = false,
+		config = function(_, opts) end,
 	},
-	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
-	end,
 }
