@@ -28,8 +28,8 @@ return {
 		},
 		keys = {
 			{ "<leader>cc", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
-			{ "<C-S-C>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
-			{ "<A-c>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<C-S-C>",    "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<A-c>",      "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
 		},
 		cmd = {
 			"CLIAgents",
