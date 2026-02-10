@@ -23,3 +23,9 @@ elseif vim.env.NU == "true" then
 else
 	vim.o.shell = vim.env.SHELL
 end
+
+vim.filetype.add({
+  extension = {
+    dae = "dae",
+  },
+})
