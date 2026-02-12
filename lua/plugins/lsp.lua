@@ -1,75 +1,20 @@
 local lspsaga = require("config.lsp.lspsaga")
-local lspconfig = require("config.lsp.lspconfig")
-local mason = require("config.lsp.mason")
 local conf = require("config.lsp.lsp_signature")
 
 return {
-	--LSP三件套
 	{
-		"mason-org/mason.nvim",
-		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallALl", "MasonUpdate", "MasonLog" },
-		-- cond = function()
-		-- 	-- env: IS_NIXOS ==> Do Not Load
-		-- 	return not (vim.env.IS_NIXOS == "true")
-		-- end,
-		-- tag = "v1.11.0",
-		-- build = ":MasonUpdate",
-		build = function()
-			require("mason").setup()
+		--LSP三件套
+		"mason-org/mason-lspconfig.nvim",
+		cond = true,
+		opts = require("config.lsp.mason_lspconfig").opts,
+		build = function(opts)
+			require("mason").setup(opts)
 			vim.cmd(":MasonUpdate")
 		end,
-		opts = {},
-		lazy = true,
-	},
-
-	{
-		"mason-org/mason-lspconfig.nvim",
-		dependencies = { "mason-org/mason.nvim" },
-		-- event = {"VeryLazy"},
-		build = function()
-			require("mason").setup()
-			vim.cmd("MasonUpdate")
-			vim.cmd({ cmd = "MasonInstall", args = mason.ensure_installed_server })
-		end,
-		-- cond = function()
-		-- 	-- env: IS_NIXOS ==> Do Not Load
-		-- 	return not (vim.env.IS_NIXOS == "true")
-		-- end,
-		cmd = { "LspInstall", "LspUninstall" },
-		opts = {
-			automatic_enable = {
-				-- The following servers are manually configured
-				exclude = {
-					"lua_ls",
-					"basedpyright",
-					"powershell_es",
-					"ruff",
-					"sourcekit",
-					"nu",
-					"ty",
-				},
-			},
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		-- Do not set event "BufReadPost", it will break filetype detection at the first time when neovim starts
-		-- event = "VeryLazy", -- Load lspconfig, mason, mason-lspconfig
-		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 		dependencies = {
-			-- { "williamboman/mason.nvim" },
-			-- { "williamboman/mason-lspconfig.nvim" },
-			{ "VidocqH/lsp-lens.nvim", priprity = 25 },
-			{ "nvimdev/lspsaga.nvim" },
+			{ "mason-org/mason.nvim", opts = require("config.lsp.mason").opts },
+			{ "neovim/nvim-lspconfig", keys = require("config.lsp.lspconfig").keymaps },
 		},
-		config = function()
-			-- mason.setup()
-			require("mason").setup()
-			require("mason-lspconfig").setup()
-			require("lazydev").setup(require("config.lsp.lazydev").config)
-			lspconfig.setup()
-		end,
-		keys = lspconfig.keys,
 	},
 	{
 		"ray-x/lsp_signature.nvim",

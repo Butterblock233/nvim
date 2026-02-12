@@ -9,6 +9,12 @@ vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+})
+
 vim.lsp.enable({
 	"clangd",
 	"lua_ls",
