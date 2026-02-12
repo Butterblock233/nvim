@@ -10,11 +10,4 @@ vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
-vim.lsp.enable({
-	"clangd",
-	"lua_ls",
-	"pwsh",
-	"basedpyright",
-})
-
 return M
