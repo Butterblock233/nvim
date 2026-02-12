@@ -1,5 +1,5 @@
 local M = {}
-M.config = {
+M.opts = {
 	library = {
 		-- Library paths can be absolute
 		-- "~/projects/my-awesome-lib",
@@ -19,6 +19,7 @@ M.config = {
 		-- Load the xmake types when opening file named `xmake.lua`
 		-- Needs `LelouchHe/xmake-luals-addon` to be installed
 		{ path = "xmake-luals-addon/library", files = { "xmake.lua" } },
+		{ path = "nvim", words = { "vim%.", "require" } },
 	},
 }
 return M
