@@ -144,21 +144,34 @@ return {
 	-- LazyDev.nvim
 	{
 		"folke/lazydev.nvim",
-		ft = "lua", -- 只在 Lua 文件加载
-		dependencies = {
-			{ "justinsgithub/wezterm-types", lazy = true }, -- Wezterm 类型定义
-			{ "Bilal2453/luvit-meta", lazy = true }, -- Luvit 类型支持（可选）
-		},
+		ft = "lua", -- only load on lua files
 		opts = {
 			library = {
-				-- 确保路径正确指向依赖的安装位置
-				{ path = "wezterm-types/types", words = { "wezterm" } }, -- 仅在 'wezterm' 出现时加载
-				{ path = "luvit-meta/library", words = { "luv" } }, -- 仅在 'luv' 出现时加载
-				-- 可选的其他库路径
-				vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
-				-- 如果需要 Neovim 或 Lazy.nvim 的类型支持，可以取消注释
-				-- vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-				-- vim.fn.expand("$VIMRUNTIME/lua/vim"),
+				-- Library paths can be absolute
+				-- "~/projects/my-awesome-lib",
+				-- Or relative, which means they will be resolved from the plugin dir.
+				"lazy.nvim",
+				-- It can also be a table with trigger words / mods
+				-- Only load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				-- always load the LazyVim library
+				-- "LazyVim",
+				-- Only load the lazyvim library when the `LazyVim` global is found
+				{ path = "LazyVim", words = { "LazyVim" } },
+				-- Load the wezterm types when the `wezterm` module is required
+				-- Needs `DrKJeff16/wezterm-types` to be installed
+				{ path = "wezterm-types", mods = { "wezterm" } },
+				-- Load the xmake types when opening file named `xmake.lua`
+				-- Needs `LelouchHe/xmake-luals-addon` to be installed
+				{ path = "xmake-luals-addon/library", files = { "xmake.lua" } },
+			},
+			-- disable when a .luarc.json file is found
+			-- enabled = function(root_dir)
+			-- 	return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+			-- end,
+
+			intergrations = {
+				-- lspconfig = false
 			},
 		},
 	},

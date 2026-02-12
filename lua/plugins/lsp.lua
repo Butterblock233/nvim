@@ -66,6 +66,7 @@ return {
 			-- mason.setup()
 			require("mason").setup()
 			require("mason-lspconfig").setup()
+			require("lazydev").setup(require("config.lsp.lazydev").config)
 			lspconfig.setup()
 		end,
 		keys = lspconfig.keys,

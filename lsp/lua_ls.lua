@@ -1,3 +1,4 @@
+--- @type vim.lsp.Config
 return {
 	-- Command and arguments to start the server.
 	cmd = { "lua-language-server" },
@@ -18,15 +19,15 @@ return {
 			},
 		},
 	},
-	workspace = {
-		checkThirdParty = false,
-		library = {
-			vim.env.VIMRUNTIME,
-			-- Depending on the usage, you might want to add additional paths here.
-			-- "${3rd}/luv/library"
-			-- "${3rd}/busted/library",
-		},
-		-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-		-- library = vim.api.nvim_get_runtime_file("", true)
-	},
+	-- workspace = {
+	-- 	checkThirdParty = false,
+	-- 	library = {
+	-- 		vim.env.VIMRUNTIME,
+	-- 		-- Depending on the usage, you might want to add additional paths here.
+	-- 		-- "${3rd}/luv/library"
+	-- 		-- "${3rd}/busted/library",
+	-- 	},
+	-- 	-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+	-- 	-- library = vim.api.nvim_get_runtime_file("", true)
+	-- },
 }
