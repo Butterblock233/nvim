@@ -143,12 +143,14 @@ function M.setup()
 			end, { "i" }),
 			-- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 			["<C-j>"] = cmp.mapping(function(fallback)
-				if cmp.visible() then
+				if cmp.visible_docs() then
 					cmp.mapping.scroll_docs(-4)
-				elseif require("supermaven-nvim.api").is_running() then
-					vim.cmd("norm! j")
+				-- elseif require("supermaven-nvim.api").is_running() then
+				-- 	vim.cmd("norm! j")
 				else
-					fallback()
+					-- fallback()
+					-- Force trigger scroll down
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, true, true), "n", true)
 				end
 			end, { "i", "c" }),
 			-- ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
