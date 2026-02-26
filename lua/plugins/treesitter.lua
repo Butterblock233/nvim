@@ -17,6 +17,7 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 			-- setup treesitter_selection
 			vim.keymap.set("n", "<S-CR>", "") -- disable default <S-CR> mapping
+			vim.keymap.set("n", "<C-CR>", "<CR>")
 			-- require("incr").setup(opts)
 			vim.keymap.set(
 				{ "n", "x" },

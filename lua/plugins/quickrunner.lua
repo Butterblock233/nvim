@@ -1,7 +1,7 @@
 return {
 	"CRAG666/code_runner.nvim",
 	-- event = "VeryLazy",
-    cmd = { "RunFile", "RunProject", "RunClose" },
+	cmd = { "RunFile", "RunProject", "RunClose" },
 	keys = {
 		{ "<leader>r", ":RunCode<CR>", { noremap = true, silent = false } },
 		{ "<leader>rf", ":RunFile<CR>", { noremap = true, silent = false } },

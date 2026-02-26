@@ -25,9 +25,9 @@ else
 end
 
 vim.filetype.add({
-  extension = {
-    dae = "dae",
-  },
+	extension = {
+		dae = "dae",
+	},
 	vim.api.nvim_create_autocmd("TermOpen", {
 		group = vim.api.nvim_create_augroup("custom-terminal-keymaps", { clear = true }),
 		callback = function()

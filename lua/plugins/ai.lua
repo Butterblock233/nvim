@@ -28,8 +28,8 @@ return {
 		},
 		keys = {
 			{ "<leader>cc", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
-			{ "<C-S-C>",    "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
-			{ "<A-c>",      "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<C-S-C>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
+			{ "<A-c>", "<cmd>CLIAgents<CR>", mode = { "t", "n" }, desc = "Toggle CLI Agents" },
 		},
 		cmd = {
 			"CLIAgents",
@@ -120,7 +120,7 @@ return {
 			--- 以下依赖项是可选的，
 			-- "echasnovski/mini.pick", -- 用于文件选择器提供者 mini.pick
 			"nvim-telescope/telescope.nvim", -- 用于文件选择器提供者 telescope
-			"hrsh7th/nvim-cmp",     -- avante 命令和提及的自动完成
+			"hrsh7th/nvim-cmp", -- avante 命令和提及的自动完成
 			-- "ibhagwan/fzf-lua", -- 用于文件选择器提供者 fzf
 			"nvim-tree/nvim-web-devicons", -- 或 echasnovski/mini.icons
 			-- "zbirenbaum/copilot.lua", -- 用于 providers='copilot'
@@ -165,6 +165,9 @@ return {
 			"SupermavenLogout",
 			"SupermavenShowLog",
 			"SupermavenClearLog",
+		},
+		keymaps = {
+			{ "n", "<leader>smt", "<cmd>SupermavenToggle<CR>", mode = "n", desc = "Toggle Supermaven" },
 		},
 		opts = {
 			keymaps = {
