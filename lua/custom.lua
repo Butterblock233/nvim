@@ -28,4 +28,11 @@ vim.filetype.add({
   extension = {
     dae = "dae",
   },
+	vim.api.nvim_create_autocmd("TermOpen", {
+		group = vim.api.nvim_create_augroup("custom-terminal-keymaps", { clear = true }),
+		callback = function()
+			-- Disable leader keymaps in terminal
+			vim.keymap.set("t", "<space>", "<space>", { buffer = true, nowait = true })
+		end,
+	}),
 })
