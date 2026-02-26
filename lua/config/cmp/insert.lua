@@ -30,24 +30,57 @@ function M.setup()
 				require("luasnip").lsp_expand(args.body)
 			end,
 		},
-		-- 来源
+
 		sources = cmp.config.sources(cmp_sources),
+
 		formatting = {
-			format = function(entry, vim_item)
-				-- 使用 lspkind 为每个补全项类型加上图标
-				vim_item.kind = (lspkind.presets.default[vim_item.kind] or "") .. " " .. vim_item.kind
+			fields = { "abbr", "icon", "kind" },
+			format = lspkind.cmp_format({
+				mode = "symbol_text",
+				-- maxwidth = {
+				-- 	abbr = 40,
+				-- 	menu = 30,
+				-- },
+				show_labelDetails = false,
 
-				local highlights_info = require("colorful-menu").cmp_highlights(entry)
+				before = function(entry, vim_item)
+					-- append highlight to abbr
+					local highlights_info = require("colorful-menu").cmp_highlights(entry)
+					if highlights_info ~= nil then
+						vim_item.abbr_hl_group = highlights_info.highlights
+						vim_item.abbr = highlights_info.text
+					end
 
-				-- if highlight_info==nil, which means missing ts parser, let's fallback to use default `vim_item.abbr`.
-				-- What this plugin offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
-				if highlights_info ~= nil then
-					vim_item.abbr_hl_group = highlights_info.highlights
-					vim_item.abbr = highlights_info.text
-				end
-				return vim_item
-			end,
+					-- Source Aliases
+					-- local source_names = {
+					-- 	nvim_lsp = "LSP",
+					-- 	luasnip = "Snippets",
+					-- 	buffer = "Buffer",
+					-- 	path = "Path",
+					-- 	codeium = "Codeium",
+					-- }
+					-- vim_item.menu = source_names[entry.source.name] or entry.source.name
+
+					return vim_item
+				end,
+			}),
 		},
+		-- formatting = {
+		-- 	format = function(entry, vim_item)
+		-- 		-- 使用 lspkind 为每个补全项类型加上图标
+		-- 		vim_item.kind = (lspkind.presets.default[vim_item.kind] or "") .. " " .. vim_item.kind
+		--
+		-- 		local highlights_info = require("colorful-menu").cmp_highlights(entry)
+		--
+		-- 		-- if highlight_info==nil, which means missing ts parser, let's fallback to use default `vim_item.abbr`.
+		-- 		-- What this plugin offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
+		-- 		if highlights_info ~= nil then
+		-- 			vim_item.abbr_hl_group = highlights_info.highlights
+		-- 			vim_item.abbr = highlights_info.text
+		-- 		end
+		-- 		return vim_item
+		-- 	end,
+		-- },
 		-- 快捷键绑定
 		mapping = {
 			-- 上一个
