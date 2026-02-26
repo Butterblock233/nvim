@@ -20,6 +20,7 @@ local highlights = {
 	-- Normal = { fg = "#D4D4D4", bg = "#1E1E1E" },
 	-- Comment = { fg = "#6A9955", italic = true },
 	Statement = { link = "Keyword" },
+	PreProc = { link = "Keyword" },
 
 	-- 语法高亮组
 	Keyword = { fg = "#569CD6", italic = true },
@@ -75,7 +76,6 @@ local highlights = {
 }
 
 local function reload_highlight()
-	-- 应用高亮配置
 	for group, properties in pairs(highlights) do
 		vim.api.nvim_set_hl(0, group, properties)
 	end

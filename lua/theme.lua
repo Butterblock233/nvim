@@ -1,4 +1,5 @@
-local colorscheme = "lunar"
+--- @type string
+local colorscheme = "tokyonight-night"
 -- tokyonight
 -- OceanicNext
 -- gruvbox
