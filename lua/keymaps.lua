@@ -10,6 +10,7 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-w><C-w>", "<C-w>c", opts) -- double <C-w> to close window
 
 --  快速保存 --
 vim.keymap.set("i", "<C-s>", "<cmd>w<CR>", opts)

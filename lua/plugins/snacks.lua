@@ -101,6 +101,7 @@ return {
 			dim = { enabled = true },
 			lazygit = {
 				enabled = true,
+				term_normal = false,
 			},
 			profiler = {
 				icons = {

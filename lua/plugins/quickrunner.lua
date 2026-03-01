@@ -51,6 +51,9 @@ return {
 							require("code_runner.commands").run_from_fn(vim.list_extend(c_base, c_exec))
 						end)
 					end,
+					zig = {
+						"zig run $fileName",
+					},
 				},
 			})
 		end,
