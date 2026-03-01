@@ -49,6 +49,14 @@ end
 --- this function will create a new selection and enter visual mode only if
 --- tree-sitter node exists at the cursor position
 function M.increment_selection()
+	local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+
+	-- Ignore quickfix window
+	if buftype == "quickfix" then
+		-- fallback to default <CR> mapping
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
+		return
+	end
 	local mode = vim.api.nvim_get_mode().mode
 	if mode == "n" then
 		selected_nodes = {}
