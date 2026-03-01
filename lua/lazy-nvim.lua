@@ -37,4 +37,9 @@ require("lazy").setup({
 		enabled = true,
 		notify = false, -- get a notification when changes are found
 	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+	},
 })

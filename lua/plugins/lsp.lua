@@ -5,6 +5,7 @@ return {
 	{
 		--LSP三件套
 		"mason-org/mason-lspconfig.nvim",
+		event = "VeryLazy",
 		cond = true,
 		opts = require("config.lsp.mason_lspconfig").opts,
 		build = function(opts)
